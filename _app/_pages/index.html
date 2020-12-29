@@ -1,0 +1,53 @@
+---
+layout: default
+permalink: /
+thumb_force_logo: true
+---
+
+{%- include amsf/core -%}
+
+<!-- Article wrapper, limit width -->
+<article>
+
+  <!-- Post title -->
+  <header>
+
+    <h1 class="image-title">
+      Almace Scaffolding
+      <img src="{{ amsf_user_assets }}/svg/amsf.svg">
+    </h1>
+
+    <h2 class="sub-title">백앤드 개발자 박재현의 Dev Blog</h2>
+
+    <b><a href="https://github.com/jaehyunup">GitHub</a> &#x30FB;
+    <a href="https://instagram.com/jaehyun.co.kr">Instagram</a> &#x30FB;
+    <a href="https://www.linkedin.com/in/jaehyunup/">LinkedIn</a></b>
+    <small>view <a href="https://jaehyunup.github.io/about">My Profile</a></b> </small>
+
+
+
+  </header>
+
+  <div class="page-content">
+    <h2>Spring</h2>
+    {% for post in site.tags.Spring %}
+      {%- include themes/{{ site.amsf_theme }}/includes/page-item.html -%}
+    {% endfor %}
+
+     <h2>Java</h2>
+    {% for post in site.tags.Java %}
+      {%- include themes/{{ site.amsf_theme }}/includes/page-item.html -%}
+    {% endfor %}
+
+    <h2>Computer Science</h2>
+    {% for post in site.tags.ComputerScience %}
+      {%- include themes/{{ site.amsf_theme }}/includes/page-item.html -%}
+    {% endfor %}
+
+    <h2>Development</h2>
+    {% for post in site.tags.Development %}
+      {%- include themes/{{ site.amsf_theme }}/includes/page-item.html -%}
+    {% endfor %}
+
+  </div>
+</article>

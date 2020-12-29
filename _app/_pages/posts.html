@@ -1,0 +1,10 @@
+---
+layout: page
+title: Posts
+permalink: /Posts/
+desc: 포스트・Posts
+---
+
+{% for post in site.categories.posts %}
+  {%- include themes/{{ site.amsf_theme }}/includes/page-item.html -%}
+{% endfor %}
