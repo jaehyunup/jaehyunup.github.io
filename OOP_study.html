@@ -1,0 +1,467 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"> <title>Java, OOP, Thread - Jaehyun Park Dev Blog</title> <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"> <meta name="description" content="# OOP 란? 한글로 객체지향 프로그래밍. 데이터와 이를 처리하는 루틴을 하나의 독립된 객체로 동작하는 것을 지향하는 것을 말합니다. 절차지향 프로그래밍 언어의 대표격인 C와 뭐가 다른가? 기존 절차지향 프로그래밍은 C는 각 명령어의 작성을 실행 순서대로 합니다. 즉 ,위에서 아래로 일련의 실행..."> <meta name="theme-color" content="#ff00b4"> <link rel="alternate" href="/feed.xml" type="application/atom+xml"> <link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="icon" href="/favicon.png" type="image/png"><link rel="icon" href="data:image/svg+xml;utf8,%3Csvg%20width%3D'240'%20height%3D'240'%20viewBox%3D'0%200%20240%20240'%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%3E%3Ctitle%3EAlmace%20Scaffolding%3C%2Ftitle%3E%3Cpath%20d%3D'M62.563%20189.292C42.669%20172.783%2030%20147.872%2030%20120c0-49.706%2040.294-90%2090-90s90%2040.294%2090%2090c0%2038.573-24.266%2071.478-58.365%2084.283L168.568%2097h-24.752l-17.804%20112.802A91.344%2091.344%200%200%201%20120%20210c-12.356%200-24.13-2.49-34.85-6.996L95.568%20137H70.816l-8.253%2052.292z'%20fill%3D'%23FF00B4'%20fill-rule%3D'evenodd'%2F%3E%3C%2Fsvg%3E" sizes="any" type="image/svg+xml"><link rel="mask-icon" href="/mask-icon.svg" color="#ff00b4"> <link rel="manifest" href="/manifest.json"> <style>:root{--fontstack-prefix:-apple-system,BlinkMacSystemFont,;--fontstack-sans-serif:"Helvetica Neue",Arial,sans-serif;--fontstack-serif:Georgia,serif;--fontstack-monospace:Menlo,Consolas,monospace;--fontstack-default:var(--fontstack-prefix) var(--fontstack-sans-serif);--font-size-base:1rem;--font-size-factor:1vw;--font-size:1.6vw;--font-features:"halt","cv01","cv02","cv03";--line-height:calc(20 / 14);--heading-letter-spacing:-.04em;--breakpoint-lg:1600px;--breakpoint-md:1080px;--breakpoint-sm:640px;--breakpoint-xs:400px;--space-lg:24vw;--space-md:8vw;--space-sm:4vw;--space-xs:1.2vw;--border-lg:4px;--border-md:2px;--border-sm:1px;--nav-padding:.75vmax;--nav-item-space:1.4vmax;--text-color-h:318;--text-color-s:30%;--text-color-l:10%;--text-color-hsl:var(--text-color-h),var(--text-color-s),var(--text-color-l);--text-color:hsl(var(--text-color-hsl));--text-color-0:hsla(var(--text-color-hsl), 0);--text-color-3:hsla(var(--text-color-hsl), .03);--text-color-5:hsla(var(--text-color-hsl), .05);--text-color-7:hsla(var(--text-color-hsl), .07);--text-color-10:hsla(var(--text-color-hsl), .1);--text-color-20:hsla(var(--text-color-hsl), .2);--text-color-30:hsla(var(--text-color-hsl), .3);--text-color-40:hsla(var(--text-color-hsl), .4);--text-color-50:hsla(var(--text-color-hsl), .5);--text-color-60:hsla(var(--text-color-hsl), .6);--text-color-70:hsla(var(--text-color-hsl), .7);--text-color-80:hsla(var(--text-color-hsl), .8);--text-color-90:hsla(var(--text-color-hsl), .9);--text-color-light:hsl(var(--text-color-h), var(--text-color-s), calc(var(--text-color-l) / .9));--text-color-dark:hsl(var(--text-color-h), var(--text-color-s), calc(var(--text-color-l) * .9));--link-color-h:318;--link-color-s:100%;--link-color-l:50%;--link-color-hsl:var(--link-color-h),var(--link-color-s),var(--link-color-l);--link-color:hsl(var(--link-color-hsl));--link-color-0:hsla(var(--link-color-hsl), 0);--link-color-3:hsla(var(--link-color-hsl), .03);--link-color-5:hsla(var(--link-color-hsl), .05);--link-color-7:hsla(var(--link-color-hsl), .07);--link-color-10:hsla(var(--link-color-hsl), .1);--link-color-20:hsla(var(--link-color-hsl), .2);--link-color-30:hsla(var(--link-color-hsl), .3);--link-color-40:hsla(var(--link-color-hsl), .4);--link-color-50:hsla(var(--link-color-hsl), .5);--link-color-60:hsla(var(--link-color-hsl), .6);--link-color-70:hsla(var(--link-color-hsl), .7);--link-color-80:hsla(var(--link-color-hsl), .8);--link-color-90:hsla(var(--link-color-hsl), .9);--link-color-light:hsl(var(--link-color-h), var(--link-color-s), calc(var(--link-color-l) / .9));--link-color-dark:hsl(var(--link-color-h), var(--link-color-s), calc(var(--link-color-l) * .9));--bg-color-h:318;--bg-color-s:30%;--bg-color-l:100%;--bg-color-hsl:var(--bg-color-h),var(--bg-color-s),var(--bg-color-l);--bg-color:hsl(var(--bg-color-hsl));--bg-color-0:hsla(var(--bg-color-hsl), 0);--bg-color-3:hsla(var(--bg-color-hsl), .03);--bg-color-5:hsla(var(--bg-color-hsl), .05);--bg-color-7:hsla(var(--bg-color-hsl), .07);--bg-color-10:hsla(var(--bg-color-hsl), .1);--bg-color-20:hsla(var(--bg-color-hsl), .2);--bg-color-30:hsla(var(--bg-color-hsl), .3);--bg-color-40:hsla(var(--bg-color-hsl), .4);--bg-color-50:hsla(var(--bg-color-hsl), .5);--bg-color-60:hsla(var(--bg-color-hsl), .6);--bg-color-70:hsla(var(--bg-color-hsl), .7);--bg-color-80:hsla(var(--bg-color-hsl), .8);--bg-color-90:hsla(var(--bg-color-hsl), .9);--bg-color-light:hsl(var(--bg-color-h), var(--bg-color-s), calc(var(--bg-color-l) / .9));--bg-color-dark:hsl(var(--bg-color-h), var(--bg-color-s), calc(var(--bg-color-l) * .9));--code-color-h:calc(var(--link-color-h) + 30);--code-color-s:calc(var(--link-color-s) * .2 + 30%);--code-color-l:var(--link-color-l);--code-color-hsl:var(--code-color-h),var(--code-color-s),var(--code-color-l);--code-color:hsl(var(--code-color-hsl));--code-color-0:hsla(var(--code-color-hsl), 0);--code-color-3:hsla(var(--code-color-hsl), .03);--code-color-5:hsla(var(--code-color-hsl), .05);--code-color-7:hsla(var(--code-color-hsl), .07);--code-color-10:hsla(var(--code-color-hsl), .1);--code-color-20:hsla(var(--code-color-hsl), .2);--code-color-30:hsla(var(--code-color-hsl), .3);--code-color-40:hsla(var(--code-color-hsl), .4);--code-color-50:hsla(var(--code-color-hsl), .5);--code-color-60:hsla(var(--code-color-hsl), .6);--code-color-70:hsla(var(--code-color-hsl), .7);--code-color-80:hsla(var(--code-color-hsl), .8);--code-color-90:hsla(var(--code-color-hsl), .9);--code-color-light:hsl(var(--code-color-h), var(--code-color-s), calc(var(--code-color-l) / .9));--code-color-dark:hsl(var(--code-color-h), var(--code-color-s), calc(var(--code-color-l) * .9))}*,::after,::before{padding:0;margin:0;box-sizing:border-box}html{font-size:100%;-webkit-text-size-adjust:none;-moz-text-size-adjust:none;-ms-text-size-adjust:none;text-size-adjust:none;text-rendering:optimizelegibility;image-rendering:optimizequality;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;background:var(--bg-color)}body{--space-body:var(--space-lg);padding-top:0;padding-bottom:0;padding-left:var(--space-body);padding-right:var(--space-body);margin:0 auto 0;font-family:var(--fontstack-default);font-size:var(--font-size);font-feature-settings:var(--font-features);line-height:var(--line-height);hanging-punctuation:first allow-end;color:var(--text-color);background:var(--bg-color);transition:all .2s ease}@media (max-width:1080px){body{--space-body:var(--space-md);font-size:calc(var(--font-size) * 1.4)}}@media (max-width:640px){body{--space-body:var(--space-sm);font-size:calc(var(--font-size) * 2.4)}}@media (max-width:400px){body{font-size:calc(var(--font-size) * 3.2)}}a{color:var(--text-color);text-decoration:none;transition:color .5s ease,border-color .5s ease,background .5s ease,opacity 1.5s ease}a:focus,a:hover{transition:color .1s ease,border-color .1s ease,background .1s ease,opacity .1s ease;text-decoration:underline}img{border:0}::-webkit-input-placeholder{color:var(--text-color);opacity:.2}:-ms-input-placeholder{color:var(--text-color);opacity:.2}::-ms-input-placeholder{color:var(--text-color);opacity:.2}:focus::-webkit-input-placeholder{color:var(--link-color)}:focus:-ms-input-placeholder{color:var(--link-color)}:focus::-ms-input-placeholder{color:var(--link-color)}.navigation{padding-top:var(--nav-padding);padding-bottom:var(--nav-padding);margin-right:calc(var(--nav-item-space) * -1);margin-left:calc(var(--nav-item-space) * -1);font-size:90%;font-weight:700}.navigation li{display:inline-block;line-height:2}.navigation li a{padding:.5em var(--nav-item-space)}.navigation li a:focus,.navigation li a:hover{color:var(--link-color);text-decoration:none}.content{margin-bottom:16vmin}.content::after,.content::before{display:table;content:""}.content::after{clear:both}.content article>:last-child{margin-bottom:0!important}.content article>:last-child>:last-child{margin-bottom:0!important}.content article>:last-child>:last-child>:last-child{margin-bottom:0!important}.content article>:last-child>:last-child>:last-child>:last-child{margin-bottom:0!important}.content .post-content>:first-child{margin-top:0}.content a{font-weight:700}.content a:has(>code){-webkit-text-decoration-color:var(--code-color);text-decoration-color:var(--code-color)}.content p{margin-bottom:1.6rem;line-height:calc(var(--line-height) * 1.2)}.content header{--header-height:100vh;--space-header:var(--space-lg);display:flex;min-height:calc(var(--header-height) - (var(--nav-padding) * 4) - (var(--nav-item-space) * 4) - (1ex * .9 * 2));padding-top:10vmin;padding-bottom:10vmin;margin-bottom:16vmin;flex-direction:column;justify-content:center;background:var(--text-color-3);padding-left:var(--space-header);padding-right:var(--space-header);margin-left:calc(var(--space-header) * -1);margin-right:calc(var(--space-header) * -1)}@media (max-width:1080px){.content header{--header-height:70vh;--space-header:var(--space-md);padding-top:16vmin;padding-bottom:16vmin}}@media (max-width:640px){.content header{--space-header:var(--space-sm)}}.content header h1{font-size:360%;font-weight:700;letter-spacing:var(--heading-letter-spacing);margin-left:-2px;-webkit-hyphens:none;-ms-hyphens:none;hyphens:none;line-height:1.1}@media (max-width:640px){.content header h1{font-size:280%}}.content header small{display:block;margin-top:2vmin}.content h2,.content h3,.content h4,.content h5{margin:10vmin 0 1rem;font-size:72%;font-weight:400;opacity:.5}.content ol,.content ul{margin-bottom:1.8rem;list-style:none;counter-reset:list}@media (max-width:640px){.content ol,.content ul{margin-left:1em}}.content ol li,.content ul li{line-height:calc(var(--line-height) * 1.2)}.content ol li::before,.content ul li::before{position:absolute;display:flex;justify-content:flex-end;width:4em;margin-top:0;margin-left:-4em;text-align:right;opacity:.4;pointer-events:none}.content ul li>ul{margin-left:1em;margin-bottom:0}.content ul li::before{content:"-";padding-right:.5em}.content ol li::before{counter-increment:list;content:counter(list) ".";padding-right:.25em}.content img{--space-deco:var(--space-md);display:block;width:calc(100% + var(--space-deco) * 2);margin-left:calc(var(--space-deco) * -1);margin-right:calc(var(--space-deco) * -1);margin-bottom:1.8rem}@media (max-width:1080px){.content img{--space-deco:var(--space-md)}}@media (max-width:640px){.content img{--space-deco:var(--space-sm)}}.content blockquote{position:relative;margin-bottom:2.8rem;margin-left:calc(var(--space-xs) * -1);font-size:90%}@media (max-width:640px){.content blockquote{margin-left:0}}.content blockquote>p{padding-left:var(--space-xs);border-left:var(--border-md) solid;color:var(--text-color-60);padding-bottom:1.6em;margin-bottom:0}.content blockquote>p:last-of-type{padding-bottom:0;margin-bottom:.4em}@media (max-width:640px){.content blockquote>p{padding-left:calc(var(--space-sm) - var(--border-md));padding-right:var(--space-sm);margin-left:calc(var(--space-sm) * -1);margin-right:calc(var(--space-sm) * -1)}}.content code,.content pre{font-family:var(--fontstack-monospace);color:var(--code-color)}.content pre{background:var(--code-color-5)}.content code{font-size:92%;overflow-wrap:break-word}.content .highlight>pre,.content .highlighter-rouge pre.highlight,.content pre{--space-code:var(--space-xs);padding-top:var(--space-xs);padding-bottom:var(--space-xs);padding-left:var(--space-code);padding-right:var(--space-code);margin-left:calc(var(--space-code) * -1);margin-right:calc(var(--space-code) * -1);margin-bottom:1.8rem;overflow-x:auto;font-size:80%;line-height:calc(var(--line-height) * 1.2);-webkit-overflow-scrolling:touch}@media (max-width:1080px){.content .highlight>pre,.content .highlighter-rouge pre.highlight,.content pre{--space-code:var(--space-md)}}@media (max-width:640px){.content .highlight>pre,.content .highlighter-rouge pre.highlight,.content pre{--space-code:var(--space-sm)}}.content .highlight>pre code,.content .highlighter-rouge pre.highlight code,.content pre code{overflow-wrap:normal}.content table{--space-table:var(--space-xs);width:calc(100% + var(--space-table) * 2);border-collapse:collapse;border-spacing:0;font-size:90%;margin-left:calc(var(--space-table) * -1);margin-right:calc(var(--space-table) * -1);margin-bottom:1.8rem}@media (max-width:1080px){.content table{--space-table:var(--space-md)}}@media (max-width:640px){.content table{--space-table:var(--space-sm)}}.content table td,.content table th{--space-table-cell:var(--space-xs);padding:.6em var(--space-xs)}.content table td:first-child,.content table th:first-child{padding-left:var(--space-table-cell)}.content table td:last-child,.content table th:last-child{padding-right:var(--space-table-cell)}@media (max-width:1080px){.content table td,.content table th{--space-table-cell:var(--space-md)}}@media (max-width:640px){.content table td,.content table th{--space-table-cell:var(--space-sm)}}.content table th{border-bottom:var(--border-md) solid var(--text-color-5);text-align:left}.content table td{border-top:var(--border-sm) solid var(--text-color-5)}.post-modified-date{font-size:75%;opacity:.5}@media only percy{.post-modified-date{display:none}}.footer{padding:0 0 16vmin;margin-right:calc(var(--nav-item-space) * -1);margin-left:calc(var(--nav-item-space) * -1);font-size:80%;text-transform:lowercase}.footer ul li{display:inline-block;line-height:1.8}.footer ul li a{padding:.5em var(--nav-item-space)}@media print{*,::after,::before{background:0 0!important;color:#000!important;box-shadow:none!important;text-shadow:none!important}body{padding:10mm!important;margin:0!important;font-size:calc(var(--font-size) * 1.35)}a,a:visited{text-decoration:none}.content header{min-height:0;padding-bottom:0}.content .post-content{max-width:100%!important}.content .post-content a[href]::after{content:" (" attr(href) ")";font-weight:400;opacity:.5}blockquote,pre{page-break-inside:avoid}thead{display:table-header-group}img,tr{page-break-inside:avoid}img{max-width:100%!important}h2,h3,h4,h5,p{orphans:3;widows:3}h2,h3{page-break-after:avoid}.footer,.navigation{display:none}}:root{--rdmz-h:var(--code-color-h, 254);--rdmz-s:var(--code-color-s, 80%);--rdmz-l:var(--code-color-l, 39%)}.highlight>pre,.highlighter-rouge pre.highlight{background:hsla(var(--rdmz-h),var(--rdmz-s),var(--rdmz-l),.03)}.highlight .cm,.highlighter-rouge .cm{font-style:italic}.highlight .c1,.highlighter-rouge .c1{font-style:italic}.highlight .nc,.highlighter-rouge .nc{font-weight:700}.highlight .nf,.highlighter-rouge .nf{font-weight:700}.highlight .o,.highlighter-rouge .o{font-weight:700}.highlight .k,.highlighter-rouge .k{font-weight:700}.highlight .kt,.highlighter-rouge .kt{font-weight:700}.highlight .kc,.highlighter-rouge .kc{font-weight:700}.highlight .kd,.highlighter-rouge .kd{font-weight:700}.highlight code,.highlight pre,.highlighter-rouge code,.highlighter-rouge pre{--rdmz-h-local:var(--rdmz-h);color:hsl(var(--rdmz-h),var(--rdmz-s),var(--rdmz-l))}.highlight .n,.highlighter-rouge .n{--rdmz-h-local:calc(var(--rdmz-h) + 16.1194029851);color:hsl(var(--rdmz-h-local),var(--rdmz-s),var(--rdmz-l))}.highlight .na,.highlighter-rouge .na{--rdmz-h-local:calc(var(--rdmz-h) + 21.4925373134);color:hsl(var(--rdmz-h-local),var(--rdmz-s),var(--rdmz-l))}.highlight .nc,.highlighter-rouge .nc{--rdmz-h-local:calc(var(--rdmz-h) + 37.6119402985);color:hsl(var(--rdmz-h-local),var(--rdmz-s),var(--rdmz-l))}.highlight .no,.highlighter-rouge .no{--rdmz-h-local:calc(var(--rdmz-h) + 42.9850746269);color:hsl(var(--rdmz-h-local),var(--rdmz-s),var(--rdmz-l))}.highlight .nd,.highlighter-rouge .nd{--rdmz-h-local:calc(var(--rdmz-h) + 48.3582089552);color:hsl(var(--rdmz-h-local),var(--rdmz-s),var(--rdmz-l))}.highlight .nf,.highlighter-rouge .nf{--rdmz-h-local:calc(var(--rdmz-h) + 64.4776119403);color:hsl(var(--rdmz-h-local),var(--rdmz-s),var(--rdmz-l))}.highlight .nn,.highlighter-rouge .nn{--rdmz-h-local:calc(var(--rdmz-h) + 75.223880597);color:hsl(var(--rdmz-h-local),var(--rdmz-s),var(--rdmz-l))}.highlight .k,.highlighter-rouge .k{--rdmz-h-local:calc(var(--rdmz-h) + 177.313432836);color:hsl(var(--rdmz-h-local),var(--rdmz-s),var(--rdmz-l))}.highlight .kc,.highlighter-rouge .kc{--rdmz-h-local:calc(var(--rdmz-h) + 182.686567164);color:hsl(var(--rdmz-h-local),var(--rdmz-s),var(--rdmz-l))}.highlight .kd,.highlighter-rouge .kd{--rdmz-h-local:calc(var(--rdmz-h) + 188.059701493);color:hsl(var(--rdmz-h-local),var(--rdmz-s),var(--rdmz-l))}.highlight .kn,.highlighter-rouge .kn{--rdmz-h-local:calc(var(--rdmz-h) + 193.432835821);color:hsl(var(--rdmz-h-local),var(--rdmz-s),var(--rdmz-l))}.highlight .kt,.highlighter-rouge .kt{--rdmz-h-local:calc(var(--rdmz-h) + 209.552238806);color:hsl(var(--rdmz-h-local),var(--rdmz-s),var(--rdmz-l))}.highlight .s,.highlighter-rouge .s{--rdmz-h-local:calc(var(--rdmz-h) + 236.417910448);color:hsl(var(--rdmz-h-local),var(--rdmz-s),var(--rdmz-l))}.highlight .mi,.highlighter-rouge .mi{--rdmz-h-local:calc(var(--rdmz-h) + 317.014925373);color:hsl(var(--rdmz-h-local),var(--rdmz-s),var(--rdmz-l))}.highlight .o,.highlighter-rouge .o{--rdmz-h-local:calc(var(--rdmz-h) + 343.880597015);color:hsl(var(--rdmz-h-local),var(--rdmz-s),var(--rdmz-l))}.highlight .cm,.highlighter-rouge .cm{color:hsla(calc(var(--rdmz-h) + 16.1194029851),calc(var(--rdmz-s) * .7),var(--rdmz-l),.6)}.highlight .c1,.highlighter-rouge .c1{color:hsla(calc(var(--rdmz-h) + 26.8656716418),calc(var(--rdmz-s) * .7),var(--rdmz-l),.6)}:root{--code-color-h:calc(var(--link-color-h) + 10);--code-color-s:calc(var(--link-color-s) * .2 + 40%)}@media (prefers-color-scheme:dark){:root{--text-color-l:95%;--bg-color-l:14%;--bg-color-s:2%;--code-color-l:calc(var(--link-color-l) * 1.3)}}</style> <link rel="canonical" href="https://jaehyunup.github.io/OOP_study.html"> <meta property="og:type" content="article"> <meta property="og:site_name" content="Jaehyun Park Dev Blog"> <meta property="og:title" content="Java, OOP, Thread"> <meta property="og:url" content="https://jaehyunup.github.io/OOP_study.html"> <meta property="og:description" content="# OOP 란? 한글로 객체지향 프로그래밍. 데이터와 이를 처리하는 루틴을 하나의 독립된 객체로 동작하는 것을 지향하는 것을 말합니다. 절차지향 프로그래밍 언어의 대표격인 C와 뭐가 다른가? 기존 절차지향 프로그래밍은 C는 각 명령어의 작성을 실행 순서대로 합니다. 즉 ,위에서 아래로 일련의 실행..."> <meta property="og:image" content="/img/instance_memory.png"> <meta name="twitter:card" content="summary_large_image"> <meta name="twitter:site" content="@sparanoid"> <meta name="twitter:creator" content="@none"> <meta property="article:published_time" content="2020-08-19T00:00:00-07:00"> <meta property="article:modified_time" content="2020-12-28T23:47:43-08:00"> <meta name="twitter:label1" value="Words"> <meta name="twitter:data1" value="4983 words"> <meta name="twitter:label2" value="Reading time"> <meta name="twitter:data2" value="24 mins"> </head><body><nav class="navigation"> <ul> <li> <a href="/">홈</a> </li> <li> <a href="/posts/">포스트</a> </li> <li> <a href="/about/">박재현</a> </li> </ul> </nav> <main class="content" role="main"> <article lang="en"> <header> <h1 title="Java, OOP, Thread" data-title="Java, OOP, Thread"> Java, OOP, Thread<span class="dot dot--post"> </span> </h1> <small> By <span rel="author">Jaehyun Park</span> on <time datetime="2020-08-19T00:00:00-07:00">Aug 19, 2020</time> </small> </header> <div class="post-content"> <p># OOP 란?</p> <p>한글로 객체지향 프로그래밍. <strong>데이터와 이를 처리하는 루틴을 하나의 독립된 객체로 동작하는 것을 지향하는 것을 말합니다.</strong></p> <p><strong>절차지향 프로그래밍 언어의 대표격인 C와 뭐가 다른가?</strong></p> <p>기존 절차지향 프로그래밍은 C는 각 명령어의 작성을 실행 순서대로 합니다. 즉 ,위에서 아래로 일련의 실행 코드들이 작성되어 진다는 것입니다.<br> 하지만 OOP 언어를 사용한다면 아래와 같은 특징을 가지는 방식으로의 프로그래밍이 가능합니다. <br><br></p> <h3 id="1-oop의-특징">1. OOP의 특징</h3> <ul> <li>추상화<br> 현실 세계에 존재하는 객체의 주요특징을 추출하는 것</li> <li>캡슐화<br> 하나의 클래스 안에 데이터와 기능을 담아 정의하고, 중요한 데이터나 복잡한 기능등은 숨기고, 외부에서 사용에 필요한 기능만을 공개하는 것.</li> <li>상속성<br> 객체를 정의할때 기존 존재하는 객체의 속성과 기능을 상속받아 더 발전된 형태로 정의하는것</li> <li>다형성<br> 같은 타입 또는 같은 기능의 호출로 다양한 효과를 가져오는것. 예를 들면 오버라이딩,오버로딩 등이 있다.</li> </ul> <p>Java는 Object Oriented Programming 을 지향하고 있습니다. 조금 더 좋은, 그리고 안전한 코드를 작성하기 위해서 이 OOP에 대한 이해가 충분하게 필요하고 이에 부합하는 다양한 코드 작성 패턴을 학습 해야한다고 생각합니다.</p> <h3 id="2-class--object-">2. Class ? Object ?</h3> <p>Object - 시스템의 대상이 되는 모든 것.<br> 예를 들면 쇼핑몰 시스템에서, 상품/고객/주문 등등을 Object로 표현하게 됩니다. <br> Object는 <strong>구체적</strong>인 표현 대상이 있습니다. 상품 Object는 쇼핑몰에서 판매하는 A상품,B상품 등을 표현 할 수있습니다.<br> Class는 이런 Object를 분석해서 공통적인 내용들을 추상화 해서 Programming 언어로 표현한 것입니다.</p> <blockquote> <p>OOP와 절차지향 프로그래밍의 근본적 차이점은, OOP는 현실세계의 Object를 분석해서 특정한 기준에 따라 Classification 하여 Class로 정의하고 이 Class 를 통해서 객체를 만들어내어 일련의 알고리즘을 진행하는 것이라 생각합니다.</p> </blockquote> <h3 id="3-class는-어떻게-만들어야-할까요">3. Class는 어떻게 만들어야 할까요?</h3> <p>Class를 만들기 전에, Class만의 정적인 특성과 동적인 특성을 파악해야합니다.<br> 정적인 특성은 attribute, 동적인 특성을 behavior 라고 합니다.<br> 이러한 특성은 Class가 어떤 시스템에서 사용되느냐에 따라서 다르게 정의 될 수 있습니다.</p> <p>만약 휴대폰 쇼핑몰에서 Galaxy Note라는 클래스를 만든다고 하면, [이름과 색상, 가격]은 정적 특성인 attribute가 될것이고 동적 특성에는 [개인에 맞게 할부원금을 계산하는 행위] 등 있겠습니다.</p> <p>다른 예로, 만약 삼성에서 제조관리 시스템을 제작하기위해 똑같이 Galaxy Note라는 클래스를 만든다면 [시리얼넘버,재질,조립상태]등이 정적 특성으로 분류되어 질것이고, 동적 특성에는 [불량을 확인하는 행위]가 있겠습니다.</p> <p>즉, 시스템의 의도나 목적에 따라 같은 현실객체를 정의한 클래스라도 다른형태로 나타날 수 있습니다. 그러니 이런 현실세계의 Object를 Class로 도출하는 과정이 아주 중요 하다고 볼 수 있겠습니다.</p> <h3 id="4-아스날">4. 아스날</h3> <h3 id="5-클래스-한눈에-알아보기">5. 클래스 한눈에 알아보기</h3> <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Phone</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="n">name</span><span class="o">;</span>
+    <span class="kd">public</span> <span class="kt">char</span> <span class="n">color</span><span class="o">;</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="n">price</span><span class="o">;</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">double</span> <span class="nc">SWversion</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">getRealDebt</span><span class="o">(){</span> 
+        <span class="k">return</span> <span class="mi">10000</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="kd">public</span> <span class="nf">phone</span><span class="o">(){</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">name</span><span class="o">=</span><span class="s">"galaxy"</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">color</span><span class="o">=</span><span class="s">"black"</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">price</span><span class="o">=</span><span class="s">"1000"</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">SWversion</span><span class="o">=</span><span class="s">"1.0"</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div> <p>휴대폰이라는 클래스는 이름, 색깔, 가격 그리고 SW 버전이라는 attribute를 가지고 있습니다. 그리고 getRealDebt라는 메소드도 가지고 있죠.<br> <strong>이중 static이 함께 선언된 SWversion</strong> 은 무슨 의미일까요? 이를 알기위해서는 메모리 저장 영역에 대한 이야기가 필요합니다.</p> <h2 id="--메모리에는-어떻게-저장될까">- 메모리에는 어떻게 저장될까?</h2> <p><img src="/img/instance_memory.png" width="800" style="display:block;margin-left:auto;margin-right:auto;margin-top:20px"></p> <blockquote> <p>함수코드는 Method Area에, Stack에는 런타임에 호출되어지는 메소드가, 실제로 선언과 호출에 의해 발생하는 메모리 할당은 heap에 객체 별로 독립적으로.</p> </blockquote> <p>나는 이렇게 저장될것이라고 이해했다. 그렇다. Static으로 선언된 인스턴스는, method area라는 공용 메모리 공간에 저장되고, 다른 곳에서도 이 인스턴스에 접근이 가능하다.</p> <blockquote> <p><strong><em>인스턴스는 어떤 원본(추상적인 개념)으로부터 ‘생성된 복제본’을 의미합니다.</em></strong></p> </blockquote> <p>클래스를 메모리에 올리기위해 new를 한다면 이 클래스는 소프트웨어적으로 인스턴스화 되었다고 볼 수 있고, new를 할때마다 힙에 각각의 메모리 공간을 할당받는다. <strong>메모리 구조가 이렇게 되어있기 때문에 같은 클래스에서 생성된 인스턴스라도 값이 다를수 있다는 말이다.</strong></p> <h3 id="6-배열을-array-list처럼-자연스럽게-늘리는방법">6. 배열을 array List처럼 자연스럽게 늘리는방법</h3> <p>java에서 배열은 메모리의 순서로 지정된 공간을 칭하고 index를 통해 메모리에 접근한다고 알려져있다. 하지만 이런 순차자료구조는 배열의 변경이나 삭제등에서 나타나는 오버헤드나 여타 다른 성능적인 불리함을 가지고있다 더 많은 기능을 가진 클래스로 List 클래스가 존재한다. (ArrayList,LinkedList 등)</p> <p>ArrayList에서는 data 가 append 되었을때 메모리를 늘려주게 되는데. 이것은 Arrays.copyOf() 메소드가 이용된다. 이것을 구현 해보자.</p> <p>ArrayList clone coding</p> <ol> <li>값을 넣을 공간이 있는지 확인한다.</li> <li>공간을 추가한 새로운 배열을 생성한다.</li> <li>기존 배열의 내용을 새롭게 생성한 배열로 복사한다.</li> <li>기존 배열을 가르키는 변수에 새로운 배열의 주소값을 입력한다.</li> </ol> <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/*Movie 클래스*/</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Movie</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">title</span><span class="o">;</span>
+	<span class="kd">private</span> <span class="nc">String</span> <span class="n">director</span><span class="o">;</span>
+	<span class="kd">private</span> <span class="kt">int</span> <span class="n">grade</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div> <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/*영화를 담는 DAO 클래스인 MovieMgr*/</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">MovieMgr</span> <span class="o">{</span>
+	<span class="kd">private</span> <span class="kd">static</span> <span class="nc">MovieMgr</span> <span class="no">INSTANCE</span><span class="o">;</span>	
+	<span class="kd">private</span> <span class="nf">MovieMgr</span><span class="o">(){</span>		
+	<span class="o">}</span>
+	<span class="kd">public</span> <span class="kd">static</span> <span class="nc">MovieMgr</span> <span class="nf">getInstance</span><span class="o">()</span> <span class="o">{</span>
+		<span class="k">if</span><span class="o">(</span><span class="no">INSTANCE</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+			<span class="no">INSTANCE</span><span class="o">=</span><span class="k">new</span> <span class="nc">MovieMgr</span><span class="o">();</span>
+		<span class="o">}</span>
+		<span class="k">return</span> <span class="no">INSTANCE</span><span class="o">;</span>
+	<span class="o">}</span>
+	<span class="kd">private</span> <span class="nc">Movie</span><span class="o">[]</span> <span class="n">movies</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Movie</span><span class="o">[</span><span class="mi">100</span><span class="o">];</span>
+	<span class="c1">// 데이터가 들어갈 위치와 입력된 데이터의 크기</span>
+	
+	<span class="kd">private</span> <span class="kt">int</span> <span class="n">index</span><span class="o">;</span><span class="c1">//</span>
+	<span class="cm">/** 파라메터로 전달된 화 정보를 전달받아 배열에 저장한다. */</span>
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">add</span><span class="o">(</span><span class="nc">Movie</span> <span class="n">m</span><span class="o">)</span> <span class="o">{</span>		
+		<span class="n">movies</span><span class="o">[</span><span class="n">index</span><span class="o">]=</span><span class="n">m</span><span class="o">;</span>
+		<span class="n">index</span><span class="o">++;</span>
+		
+	<span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div> <p>MovieMgr 클래스는 movie 클래스를 저장할수있는 클래스이다. 내부적으로 배열을 가지고있고 add메서드를 실행할때 movies 배열에 movie 인스턴스를 저장 할 수 있다.</p> <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">void</span> <span class="nf">add</span><span class="o">(</span><span class="nc">Movie</span> <span class="n">m</span><span class="o">)</span> <span class="o">{</span>
+		<span class="n">movies</span><span class="o">[</span><span class="n">index</span><span class="o">]=</span><span class="n">m</span><span class="o">;</span>
+		<span class="n">index</span><span class="o">++;</span>	
+	<span class="o">}</span>
+</code></pre></div></div> <p>이렇게 만들어버린다면, index가 선언된 movies 배열의 크기이상으로 넘어갈때 error를 발생시킬것이다. 여기서 Arrays.copyOf() 메서드와 같이 구현을 한다면.</p> <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">void</span> <span class="nf">add</span><span class="o">(</span><span class="nc">Movie</span> <span class="n">m</span><span class="o">)</span> <span class="o">{</span>	
+		<span class="c1">//1 .체크</span>
+		<span class="k">if</span> <span class="o">(</span><span class="n">index</span> <span class="o">==</span> <span class="n">movies</span><span class="o">.</span><span class="na">length</span><span class="o">)</span> <span class="o">{</span>
+			<span class="c1">// 2. 기존 배열의 2배로 새로운 배열 생성(임의의 값으로 더 큰새로운 배열을 생성해도 된다.)</span>
+			<span class="nc">Movie</span><span class="o">[]</span> <span class="n">temp</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Movie</span><span class="o">[</span><span class="n">index</span><span class="o">*</span><span class="mi">2</span><span class="o">];</span> <span class="c1">//새로운 배열</span>
+			<span class="c1">// 3. 기존 배열의 내용을 새로 만들어질 더 큰 공간의 빈 배열로 복사한다.</span>
+			<span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">index</span><span class="o">*</span><span class="mi">2</span> <span class="o">;</span><span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+				<span class="n">temp</span><span class="o">[</span><span class="n">i</span><span class="o">]=</span> <span class="n">movies</span><span class="o">[</span><span class="n">i</span><span class="o">];</span> 
+			<span class="o">}</span>
+			<span class="c1">// 4.새롭게 생성된 배열의 주소값을 기본 변수에 대입한다.</span>
+			<span class="n">movies</span><span class="o">=</span><span class="n">temp</span><span class="o">;</span>
+		<span class="o">}</span>
+		<span class="n">movies</span><span class="o">[</span><span class="n">index</span><span class="o">]=</span><span class="n">m</span><span class="o">;</span>
+		<span class="n">index</span><span class="o">++;</span>
+	<span class="o">}</span>
+</code></pre></div></div> <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">void</span> <span class="nf">add</span><span class="o">(</span><span class="nc">Movie</span> <span class="n">m</span><span class="o">)</span> <span class="o">{</span>	
+		<span class="c1">//1 .체크</span>
+		<span class="k">if</span> <span class="o">(</span><span class="n">index</span> <span class="o">==</span> <span class="n">movies</span><span class="o">.</span><span class="na">length</span><span class="o">)</span> <span class="o">{</span>
+			<span class="nc">Arrays</span><span class="o">.</span><span class="na">copyOf</span><span class="o">(</span><span class="n">movies</span><span class="o">,</span><span class="n">index</span> <span class="o">*</span><span class="mi">2</span> <span class="o">);</span>
+		<span class="o">}</span>
+		<span class="n">movies</span><span class="o">[</span><span class="n">index</span><span class="o">]=</span><span class="n">m</span><span class="o">;</span>
+		<span class="n">index</span><span class="o">++;</span>
+	<span class="o">}</span>
+</code></pre></div></div> <p>두개의 코드는 같은 결과를 얻을 수 있다.</p> <p>이 테스트는 우리가 자연스럽게 쓰고있던 것들도 누군가 구현한 것 이라는것을 더 실감하게 되는 테스트인것 같다.. 앞으로 api라고 맨날 모르고 쓰지말고 어떻게 만들어졌는지도 확인해보면서 써야겠습니다.</p> <h3 id="7-상속">7. 상속</h3> <p>자바는 class 상속(extends) 를 통해 부모-자식 클래스 관계를 표현하며, 확장성을 제공한다고 볼 수 있습니다.</p> <p>Java는 단일상속만 가능합니다. 즉</p> <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">test</span> <span class="kd">extends</span> <span class="n">super1</span><span class="o">,</span><span class="n">super2</span><span class="o">{</span>
+	
+<span class="o">}</span>
+</code></pre></div></div> <p>와 같은 코드를 실행시킨다면 에러가 발생하게됩니다.</p> <blockquote> <p>다중 상속이 안되면 어떻게 여러가지 공통점들을 분리해낼 수 있나요?</p> </blockquote> <p>그것을 위해 java에서는 interface를 제공하고있습니다. 나중에 설명하도록 하겠습니다.</p> <p>extneds와 implements의 차이는 의도의 차이라고 생각합니다.</p> <p>extends는 부모의 메소드를 그대로 사용하던가, 아니면 자신만의 메소드로 더 확장시켜서 어떤 확장의 의도를 가진 개념이고.</p> <p>implements는 메소드의 행위 자체를 인터페이스에서 구현하지않고 implements받은 클래스에서 구현되는것을 강조하여, 어떤 행위의 다양성을 부여하는 의도를 가지고 있다고 생각합니다.</p> <h4 id="object-클래스">Object 클래스</h4> <p>자바에서는 트리구조로 클래스들을 관리하는데 object 클래스는 모든 클래스의 root 가 되는 근본이 있는 클래스입니다.<br> 유저가 어떤 클래스를 생성할때에 직접 명시하지 않아도 컴파일러단에서 알아서 object class를 상속하게 됩니다. 우리는 그래서 toString을 오버라이딩 해서 사용할 수 있는 편안함을 느끼고있는 것이죠(출력시에 자동 형변환도 되고!).</p> <blockquote> <p>배열도 Object에 저장되어지지만 좀 특별한 경우가 있다.</p> </blockquote> <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Object</span> <span class="n">o</span> <span class="o">=</span> <span class="mi">123</span><span class="o">;</span>
+</code></pre></div></div> <p>위와 같은 경우에는 어떻게 표시되어질까? <br> 123이라는 값은 상수 리터럴 이니까 객체가 아니라서 Object에 삽입하지 못할 것 같지만 , java 1.5버전부터 컴파일러단에서 다음과 같은 형태로 자동 변환해주어 가능해졌다고 한다</p> <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Object</span> <span class="n">o</span> <span class="o">=</span> <span class="nc">Integer</span><span class="o">(</span><span class="mi">123</span><span class="o">);</span>
+</code></pre></div></div> <h4 id="한가지-더-특별한-케이스">한가지 더 특별한 케이스</h4> <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">A</span><span class="o">{</span>
+	<span class="n">a</span><span class="o">(){</span>
+
+	<span class="o">}</span>
+	<span class="n">info</span><span class="o">(){</span>
+
+	<span class="o">}</span>
+<span class="o">}</span>
+<span class="kd">class</span> <span class="nc">B</span> <span class="kd">extends</span> <span class="no">A</span><span class="o">{</span>
+	<span class="nd">@Override</span>
+	<span class="n">info</span><span class="o">(){</span>
+
+	<span class="o">}</span>
+<span class="o">}</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">){</span>
+	<span class="no">A</span> <span class="n">a</span><span class="o">=</span><span class="k">new</span> <span class="no">B</span> <span class="nf">b</span><span class="o">();</span>
+	<span class="n">a</span><span class="o">.</span><span class="na">a</span><span class="o">()</span>
+	<span class="n">a</span><span class="o">.</span><span class="na">info</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></div></div> <p>위와같이 선언했을때, 묵시적 형변환으로 부모클래스인 a의 메소드를 사용하게 되지만 만약 자식에서 오버라이드가 되어있다면? 오버라이드된 메소드를 사용한다!</p> <h3 id="8인터페이스">8.인터페이스</h3> <p>추상화의 꽃! 인터페이스입니다. 인터페이스는 <strong>mathods의 추상화</strong>한것이고 class와 독립적인 개념으로 interface라고 이름을 지었다고 합니다.</p> <p>인터페이스는 관련된 methods 들을 “선언”만 할 수 있습니다. 구현의 책임은 interface를 implements 하는 클래스에게 전적으로 위임한 것입니다.</p> <p>상속은 재사용에 초점이 맞추어져있고, 인터페이스는 어떤 규정이나 약속 이라는 느낌으로 생각하면 맞겠습니다.</p> <p>예시를 들어보면. 즉 phone이라는 부모클래스의 자식클래스로 두개의 클래스를 만들었다고 생각해봅시다.</p> <p>FolderblePhone과 nomalphone 두개 가장 큰 차이는 접히느냐?안접히느냐? 라는 차이가있습니다. 하지만 폰이라는 점은 같죠.</p> <p>그렇게 했을때 가장 이상적인 상속관계는</p> <table> <thead> <tr> <th>분류</th> <th>클래스 명</th> <th>&nbsp;</th> </tr> </thead> <tbody> <tr> <td>&nbsp;</td> <td>부모</td> <td>Phone</td> </tr> <tr> <td>&nbsp;</td> <td>자식</td> <td>folderblePhone,nomalPhone</td> </tr> </tbody> </table> <p>다음과 같아지겠습니다. 여기서 부모 클래스에 phone에 접히는 기능을 추가해버린다면? nomalPhone도 접히는 메소드를 받아버리고, 이에 아무행동을 하지않는것으로 재정의를 해야되겠죠?</p> <p>그래서 interface를 통해 접고,펼치는 행위를 만들어주어서 folderblePhone 클래스에 implements 를 해주어야 합니다.</p> <h4 id="시나리오">시나리오</h4> <p>A와 B는 I라는 같은행위를 가지고 있고, 이를 인터페이스로 정의하였습니다.</p> <p>A는 B의 전부를 원하는게아니라, 필요한 어떤 method의 수행을 원하고있습니다. 하지만 A는 그 사용하고싶은 method가 내부적으로 어떻게 구현 되어 있는지도 관심 없고 관심을 가져서도 안됩니다.</p> <p>B역시 A가 필요로 하는 모든것에 대해 자신의 method 의 모든것을 노출하고 싶지않고, 호출 방법과 결과에 대한 기본적인 사항만 공유되기를 바랍니다.</p> <p>이때 인터페이스를 사용하면 B는 자신의 code를 공개하지않고 A에게 메소드를 제공할 수 있습니다.</p> <h5 id="인터페이스-끼리도-상속이-가능합니다">인터페이스 끼리도 상속이 가능합니다!</h5> <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">interface</span> <span class="nc">Inter01</span> <span class="o">{</span>
+<span class="o">}</span>
+
+<span class="kd">interface</span> <span class="nc">Inter02</span> <span class="o">{</span>
+<span class="o">}</span>
+
+<span class="kd">interface</span> <span class="nc">Inter03</span> <span class="kd">extends</span> <span class="nc">Inter02</span> <span class="o">{</span>
+<span class="o">}</span>
+
+<span class="kd">interface</span> <span class="nc">Inter04</span> <span class="kd">extends</span> <span class="nc">Inter01</span><span class="o">,</span> <span class="nc">Inter02</span> <span class="o">{</span>
+<span class="o">}</span>
+
+<span class="kd">class</span> <span class="nc">Parent01</span> <span class="o">{</span>
+<span class="o">}</span>
+
+<span class="kd">class</span> <span class="nc">Parent02</span> <span class="o">{</span>
+<span class="o">}</span>
+
+<span class="kd">class</span> <span class="nc">InterChild</span> <span class="kd">extends</span> <span class="nc">Parent01</span> <span class="kd">implements</span> <span class="nc">Inter01</span><span class="o">,</span> <span class="nc">Inter02</span> <span class="o">{</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Test01</span> <span class="o">{</span>
+	<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+
+	<span class="o">}</span>
+<span class="o">}</span>
+
+</code></pre></div></div> <p>인터페이스에 선언되는 모든 변수는 상수로인식합니다. 즉, public static final 키워드가 자동 추가됩니다</p> <p>인터페이스에 선언되는 메서드는 추상 메서드로 인식합니다. public abstract 키워드가 자동 추가 됩니다.</p> <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">interface</span> <span class="nc">ServerInfo</span> <span class="o">{</span>
+	<span class="cm">/*public static final*/</span> <span class="nc">String</span> <span class="no">IP</span><span class="o">=</span><span class="s">"192.168.0.110"</span><span class="o">;</span> 
+<span class="o">}</span>
+</code></pre></div></div> <p>즉 이런형태로 선언 되어 진다는 것입니다. 자바에서 final 키워드가 붙으면? 상수가 되어 버립니다.</p> <p>아래에서 테스트 해보겠습니다</p> <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">interface</span> <span class="nc">ServerInfo</span> <span class="o">{</span>
+	<span class="cm">/*public static final*/</span> <span class="nc">String</span> <span class="no">IP</span><span class="o">=</span><span class="s">"192.168.0.110"</span><span class="o">;</span> 
+	<span class="cm">/*public abstract*/</span> <span class="kt">void</span> <span class="nf">call</span><span class="o">();</span>
+<span class="o">}</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Test02</span> <span class="o">{</span>
+	<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+		<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="nc">ServerInfo</span><span class="o">.</span><span class="na">IP</span><span class="o">);</span> <span class="c1">// static 성질 확인</span>
+		<span class="nc">ServerInfo</span><span class="o">.</span><span class="na">IP</span><span class="o">=</span><span class="s">"1223"</span><span class="o">;</span>
+	<span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div> <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>The final field ServerInfo.IP cannot be assigned
+</code></pre></div></div> <p>static 성질과 final 상수가 된것을 알수있고, 인터페이스에 선언된 void call() 메서드도 구현부가 없는데 에러가 나지않는 이유는, abstract 키워드를 묵시적으로 붙혀주기 때문이다.</p> <p>이렇게 되기 때문에, 만약 Interface를 구현하는 클래스에서 새로 메서드를 오버라이딩 할때 public을 붙혀주어야 합니다. (컴파일러단에서 interface에 선언된 메소드에 자동으로 public static 키워드가 붙어서 해석해주기 때문에)</p> <h4 id="java8-버전부터-생긴-default와-static">java8 버전부터 생긴 default와 static</h4> <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">interface</span> <span class="nc">AIMachine</span> <span class="o">{</span>
+	<span class="kt">void</span> <span class="nf">work</span><span class="o">();</span>
+	<span class="kt">void</span> <span class="nf">tell</span><span class="o">();</span>
+<span class="o">}</span>
+<span class="kd">class</span> <span class="nc">KakaoAIMachine</span> <span class="kd">implements</span> <span class="nc">AIMachine</span><span class="o">{</span>
+	<span class="nd">@Override</span>
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">work</span><span class="o">(){</span>		
+	<span class="o">}</span>
+	<span class="nd">@Override</span>
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">tell</span><span class="o">()</span> <span class="o">{</span>
+	<span class="o">}</span>
+<span class="o">}</span>
+
+<span class="kd">class</span> <span class="nc">NaverAIMachine</span> <span class="kd">implements</span> <span class="nc">AIMachine</span><span class="o">{</span>
+	<span class="nd">@Override</span>
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">work</span><span class="o">(){</span>	
+	<span class="o">}</span>
+	<span class="nd">@Override</span>
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">tell</span><span class="o">()</span> <span class="o">{</span>	
+	<span class="o">}</span>
+	
+<span class="o">}</span>
+</code></pre></div></div> <h4 id="시나리오-1">시나리오</h4> <p>카카오와 네이버가 걷고,대화할수있는 AI로봇을 만들었는데 카카오는 음악을 실행하는 music()이라는 행동을 추가하려고한다. 근데 네이버는 아직 음악을 실행하는 기능을 만들지 않았다.</p> <p>국내 기업들의 AIMachine 을 총괄하는 사람은 고민에 빠지게 되었다</p> <ol> <li> <p>music()메서드의 추가를 위해 KakaoAIMachine 클래스에 별도의 메서드를 정의하다보면 AIMachine의 수가 아주많이 늘어났을때 관리가 불가능해 질 것이다.</p> </li> <li> <p>그렇다고 인터페이스에서 선언해서 사용하자니 해당기능을 가지고있지 않은 클래스도 이를 구현해야하는 상황이다.</p> </li> </ol> <p>기존에는 interface를 하나 더 추가해서 다중 implements 를 했겠지만 자바 8 버전 부터 추가된 default 기능과 static 기능으로 이런 부분들에대한 불편이 해소되었습니다.</p> <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">interface</span> <span class="nc">AIMachine</span> <span class="o">{</span>
+	<span class="kt">void</span> <span class="nf">work</span><span class="o">();</span>
+	<span class="kt">void</span> <span class="nf">tell</span><span class="o">();</span>
+	<span class="k">default</span> <span class="kt">void</span> <span class="nf">music</span><span class="o">()</span> <span class="o">{</span>
+		<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"아직 지원되지않는 기능입니다"</span><span class="o">);</span>
+	<span class="o">}</span>
+	<span class="kd">static</span> <span class="kt">void</span> <span class="nf">common</span><span class="o">()</span> <span class="o">{</span>
+		<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"공통으로 사용되는 기능 정의"</span><span class="o">);</span>
+	<span class="o">}</span>
+<span class="o">}</span>
+<span class="kd">class</span> <span class="nc">KakaoAIMachine</span> <span class="kd">implements</span> <span class="nc">AIMachine</span><span class="o">{</span>
+	<span class="nd">@Override</span>
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">work</span><span class="o">(){</span>
+		
+	<span class="o">}</span>
+	<span class="nd">@Override</span>
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">tell</span><span class="o">()</span> <span class="o">{</span>
+		
+	<span class="o">}</span>
+	
+<span class="o">}</span>
+
+<span class="kd">class</span> <span class="nc">NaverAIMachine</span> <span class="kd">implements</span> <span class="nc">AIMachine</span><span class="o">{</span>
+	<span class="nd">@Override</span>
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">work</span><span class="o">(){</span>
+		
+	<span class="o">}</span>
+	<span class="nd">@Override</span>
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">tell</span><span class="o">()</span> <span class="o">{</span>
+		
+	<span class="o">}</span>	
+<span class="o">}</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Test04</span> <span class="o">{</span>
+
+<span class="o">}</span>
+</code></pre></div></div> <p>이제 담당자는, 공통기능과 새로 추가된 기능이있어도 default,static을 이용해 유연하게 대처할 수 있게 되었습니다.</p> <h3 id="9-generic-제네릭">9. Generic 제네릭</h3> <p>Array의 선언을 보면 int[] 혹은 String[] 등으로 선언합니다. 이것은 무엇의 배열인지,어떤 자료형이 들어갈 배열인지 명확하게 나와있죠.</p> <p>하지만 ArrayList와 같은 Collection은 어떤 자료형을 가지는지 명확히 표현하지 않고 사용했었습니다.</p> <p>Java 1.5부터는 Generic ‘&lt;&gt;’ 을 도입하여 class code 작성 시점에 임의의 타입 (‘<t>') 을 사용하도록 하고, 실제 class를 사용하는 code에서 <t>대신 실제 사용하는 타입을 사용 할 수 있도록 하였습니다.</t></t></p> <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">GenericContainer</span><span class="o">&lt;</span><span class="no">T</span><span class="o">&gt;</span> <span class="o">{</span>
+	<span class="kd">private</span> <span class="no">T</span> <span class="n">obj</span><span class="o">;</span>
+	<span class="kd">public</span> <span class="nf">GenericContainer</span><span class="o">(){};</span>
+	<span class="kd">public</span> <span class="nf">GenericContainer</span><span class="o">(</span><span class="no">T</span> <span class="n">t</span><span class="o">){</span>
+		<span class="n">obj</span><span class="o">=</span><span class="n">t</span><span class="o">;</span>
+	<span class="o">}</span>
+	<span class="kd">public</span> <span class="no">T</span> <span class="nf">getObj</span><span class="o">(){</span>
+		<span class="k">return</span> <span class="n">obj</span><span class="o">;</span>
+	<span class="o">}</span>
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">setObj</span><span class="o">(</span><span class="no">T</span> <span class="n">t</span><span class="o">){</span>
+		<span class="n">obj</span><span class="o">;</span><span class="n">t</span><span class="o">;</span>
+	<span class="o">}</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">GenericContainerTest</span><span class="o">{</span>
+	<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">){</span>
+		<span class="nc">GenericContainer</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">gc1</span><span class="o">=</span> <span class="k">new</span> <span class="nc">GenericContainer</span><span class="o">&lt;&gt;();</span>
+		
+		<span class="nc">GenericContainer</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">gc2</span><span class="o">=</span> <span class="k">new</span> <span class="nc">GenericContainer</span><span class="o">&lt;&gt;();</span>
+		
+		<span class="n">gc1</span><span class="o">.</span><span class="na">setObj</span><span class="o">(</span><span class="mi">3</span><span class="o">);</span> <span class="c1">// 정상작동</span>
+		<span class="n">gc2</span><span class="o">.</span><span class="na">setObj</span><span class="o">(</span><span class="mi">3</span><span class="o">);</span> <span class="c1">// 에러</span>
+	<span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div> <p>즉 위와같이 제네릭을 통해 클래스 작성시에는 어떤 클래스를 사용하는지 아직도 모르지만, 적어도 해당 클래스를 사용하는 코드부분에는 명시적으로 작성해야 합니다.</p> <h3 id="10-추상클래스">10. 추상클래스</h3> <h4 id="추상-abstract--즉-구현이-안되어-있는-것-을-말한다">추상 abstract , 즉 구현이 안되어 있는 것 을 말한다.</h4> <p>추상 클래스는 abstract 키워드를 통해 선언할 수 있으며, 구현은 본인이 하지않고, 자식클래스와 같이 상속관계에 있는 클래스가 직접 구현해서 사용 할 수 있게 만드는 방법이다.</p> <p>abstract 키워드를 사용할 수 있는 곳은 다음과 같다 분류|키워드 사용가능여부 —|— 클래스|가능 메서드|가능 변수|불가</p> <p>추상클래스는 객체생성이 불가능, 상속(자식클래스)에서의 구현을 이용해서 활용하여야 합니다.</p> <p>이는 즉 추상클래스 객체변수는 New가 불가능 하다는 것을 말해요</p> <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">abstract</span> <span class="kd">class</span> <span class="nc">AbsSuper</span><span class="o">{</span>
+<span class="o">}</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Test01</span> <span class="o">{</span>
+	<span class="nc">AbsSuper</span> <span class="n">as</span> <span class="o">=</span><span class="k">new</span> <span class="nc">AbsSuper</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></div></div> <p>위와 같이 추상클래스인 AbsSuper는 객체생성 자체가 불가능 하다는 것입니다</p> <p>하지만 추상클래스를 상속받은 자식클래스는 객체변수로 선언될 수 있습니다.</p> <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">com.ssafy.day08.abs</span><span class="o">;</span>
+
+<span class="kd">abstract</span> <span class="kd">class</span> <span class="nc">AbsSuper</span><span class="o">{</span>
+<span class="o">}</span>
+
+<span class="kd">class</span> <span class="nc">AbsSub</span> <span class="kd">extends</span> <span class="nc">AbsSuper</span><span class="o">{</span>
+	
+<span class="o">}</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Test01</span> <span class="o">{</span>
+	<span class="cm">/* AbsSuper as =new AbsSuper(); 와 같이 객체생성 불가능.*/</span>
+	<span class="nc">AbsSuper</span> <span class="n">as</span><span class="o">=</span><span class="k">new</span> <span class="nc">AbsSub</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></div></div> <p>예를들면 자바 컬렉션의 Queue는 직접선언이 안되고 LinkedList로 객체생성을 해서 사용하는 방식이 이런 상황의 적절한 예시로 보입니다.</p> <blockquote> <h3 id="인터페이스랑-비슷한것-같은데-왜-추상클래스가-존재할까요">인터페이스랑 비슷한것 같은데, 왜 추상클래스가 존재할까요?</h3> <ol> <li>인터페이스에서는 일반 메서드 선언이 불가능하다 인터페이스는 완전한 추상화를 가지는 반면에, 추상클래스를 이용하면 일반메서드 + 추상메서드 형태로 사용이 가능합니다.</li> </ol> </blockquote> <ol> <li>인터페이스는 다중 상속의 개념 지원 한개의 클래스를 부모로 지정할수있는 extends와는 다르게 implements는 여러개의 인터페이스 구현이 가능합니다.</li> </ol> <table> <thead> <tr> <th>관계</th> <th>상속or구현 형태</th> </tr> </thead> <tbody> <tr> <td>class -&gt; class</td> <td>extends</td> </tr> <tr> <td>interface-&gt; interface</td> <td>extends</td> </tr> <tr> <td>class -&gt; interface</td> <td>implements</td> </tr> <tr> <td>interface -&gt; class</td> <td>불가능</td> </tr> </tbody> </table> <p>추상메서드는 어떻게 선언이 되어질까요? 앞서 말했듯이 추상메서드나 클래스는 구현이 불가능합니다. 즉, 추상메서드를 선언할때는 다음과 같이 구현부 자체를 없애버려야 합니다.</p> <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">abstract</span> <span class="kt">void</span> <span class="nf">print</span><span class="o">();</span>   <span class="c1">// 선언가능</span>
+<span class="kd">abstract</span> <span class="kt">void</span> <span class="nf">print</span><span class="o">(){};</span>   <span class="c1">// 선언 불가 (바디가 있어서)</span>
+</code></pre></div></div> <h4 id="추상클래스를-상속하는-자식-클래스가-반드시-처리해야-하는-일">추상클래스를 상속하는 자식 클래스가 반드시 처리해야 하는 일?</h4> <p>반드시 추상 메서드를 오버라이딩하여 재정의 해야만 합니다.</p> <p>추상메서드를 활용하는 예시를 보겠습니다.</p> <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">abstract</span> <span class="kd">class</span> <span class="nc">AbsSuper</span><span class="o">{</span>
+	<span class="c1">//abstract String name; 에러발생 : 변수와 함께 abstract 키워드를 사용 불가능 </span>
+	<span class="nc">String</span> <span class="n">name</span> <span class="o">=</span> <span class="s">"AbsSuper"</span><span class="o">;</span>
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">call</span><span class="o">()</span> <span class="o">{</span>
+		<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Parrents Call()"</span><span class="o">);</span>
+	<span class="o">}</span>
+<span class="c1">//	public void print(); 에러발생: 메서드 바디 필요함(일반 메서드 이기 때문에)</span>
+<span class="c1">//  public abstract void print(){}; 에러발생 : 추상메서드인데 바디를 가지고있음.</span>
+	<span class="kd">public</span> <span class="kd">abstract</span> <span class="kt">void</span> <span class="nf">print</span><span class="o">();</span>
+<span class="o">}</span>
+
+<span class="kd">class</span> <span class="nc">AbsSub</span> <span class="kd">extends</span> <span class="nc">AbsSuper</span><span class="o">{</span>
+	<span class="nc">String</span> <span class="n">name</span> <span class="o">=</span> <span class="s">"AbsSub"</span><span class="o">;</span>
+	<span class="kd">public</span> <span class="nf">AbsSub</span><span class="o">()</span> <span class="o">{};</span>
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">eat</span><span class="o">()</span> <span class="o">{</span>
+		<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Child eat()"</span><span class="o">);</span>
+	<span class="o">}</span>
+	<span class="nd">@Override</span>
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">print</span><span class="o">()</span> <span class="o">{</span>
+		<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Child print()"</span><span class="o">);</span>
+		
+	<span class="o">}</span>	
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Test01</span> <span class="o">{</span>
+	<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+		<span class="nc">AbsSuper</span> <span class="n">as</span><span class="o">=</span><span class="k">new</span> <span class="nc">AbsSub</span><span class="o">();</span>
+		<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">as</span><span class="o">.</span><span class="na">name</span><span class="o">);</span>
+		<span class="n">as</span><span class="o">.</span><span class="na">call</span><span class="o">();</span>
+		<span class="n">as</span><span class="o">.</span><span class="na">print</span><span class="o">();</span>
+	<span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div> <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>출력결과 :
+AbsSuper
+Parrents Call()
+Child print()
+</code></pre></div></div> <p>위에서 클래스별 구조는 아래와 같습니다.</p> <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>AbsSuper 
+|-name  
+|-call()  
+|-print()
+</code></pre></div></div> <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>AbsSub  
+|-name  
+|-eat()  
+|-print()  
+</code></pre></div></div> <p>AbsSuper 형태의 틀에 AbsSub 객체를 넣었습니다. (상속관계이기 때문에 가능)<br> 하지만 런타임에 실행되는 틀 자체는 결국 AbsSuper 입니다. 하지만 틀안에 들어간 객체인 자식클래스 내부적으로 부모클래스의 메서드나 추상메서드를 Override 했다면, Override된 메서드를 실행하게 됩니다.</p> <p>오버라이드 되지않는 변수와, call 메서드 같은경우 부모의 것을 그대로 사용하고, 추상메서드를 통해 강제적으로 오버라이드하였던 print()는 자식클래스의 것을 캐스팅하게 되었습니다.</p> <blockquote> <h4 id="근데-오버라이딩은-그냥-해도되는데-왜-굳이-추상메서드로-강제화-시키는-걸까">근데 오버라이딩은 그냥 해도되는데 왜 굳이 추상메서드로 강제화 시키는 걸까?</h4> <p>일부러 그렇게 시키는거다. 설계의 관점에서 바라봤을때 모든것을 추상화하고, 분리하고, 행동이 같다면 일치시키고 유지보수측면을 바라보았을때 강제할 필요가 있기때문에 이러한 기능이 제공된다고 알고 있는게 좋을것같다!</p> </blockquote> <h3 id="12-내부-클래스">12. 내부 클래스</h3> <p>선언되는 위치와 방법에 따라 4가지로 구분됩니다.</p> <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">Top</span><span class="o">{</span>
+	<span class="c1">// 멤버 변수(클래스)</span>
+	<span class="kd">class</span> <span class="nc">InnerMember</span><span class="o">{</span> <span class="o">}</span>
+	<span class="c1">// 전역 변수(클래스)</span>
+	<span class="kd">static</span> <span class="kd">class</span> <span class="nc">StaticMember</span><span class="o">{</span> <span class="o">}</span>
+	<span class="n">method</span><span class="o">(){</span>
+		<span class="c1">//지역 변수(클래스)</span>
+		<span class="kd">class</span> <span class="nc">NamedLocal</span> <span class="o">{</span> <span class="o">}</span>
+		<span class="c1">//익명 클래스</span>
+		<span class="k">new</span> <span class="n">부모클래스</span><span class="o">(){</span> <span class="o">}</span> <span class="o">-</span> <span class="n">가장</span> <span class="n">자주</span> <span class="n">사용됨</span>
+	<span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div> <p>이미 알게모르게 모두 사용할수있고, 실무에서 익명클래스말고는 사용되는 일이 많지는 않다고 하니 이렇게 사용할 수 있다. 정도로만 알고 가려고합니다.</p> <p>익명클래스는 이벤트 패턴에서 제일 많이 사용하는것 같다고 느낍니다.</p> <blockquote> <h2 id="지금까지-복습한-내용으로-간단한-매장-관리-시스템을-제작해보기">지금까지 복습한 내용으로 간단한 매장 관리 시스템을 제작해보기</h2> </blockquote> <ul> <li>요구사항 <ul> <li> <p>이 매장은 재고관리를 위한 간단한 프로그램을 원한다</p> </li> <li> <p>상품은 TV와 냉장고 두가지 이며 각 제품은 제품번호,제품명,가격 정보,재고수량 을 관리할 수 있어야 한다.</p> </li> <li> <p>이 시스템을 사용할 관리자는 아래와 같은 기능을 요구했다 |관리자가 요구한 기능목록| |—| |상품 정보가 저장되는 기능| |상품 정보 전체를 볼 수 있는 기능| |상품번호로 상품을 검색하는기능| |상품명으로 상품을 검색하는기능| |TV 정보만 보는기능| |냉장고 정보만 보는기능| |상품번호로 상품을 삭제하는기능| |전체 재고 상품 금액을 구하는 기능|</p> </li> </ul> </li> </ul> <p>프로그램을 만들어보자.</p> <h3 id="완성된-프로젝트-ver1"><a href="https://github.com/jaehyunup/java_study/tree/master/src/OOP/01_ProductSimulator/ver1">완성된 프로젝트 ver.1</a></h3> <h3 id="java-파일-입출력io">Java 파일 입출력(I/O)</h3> <p>자바 입출력은 버퍼를 쓰는것(Bufferd…)과 바로읽는것(InputStream..) 이 있습니다. 파일로 따졌을때, 버퍼를 사용한다면 디스크접근이 한번이고. 사용하지않는다면 디스크 접근을 매번 해야합니다.</p> <p>파일처리나,운영체제를 배운 사람은 디스크는 메모리접근에 비해 상대적으로 엄청나게 느리다는 것을 알것입니다.</p> <p>그럼 도대체 두개가 얼마나 큰차이가 있길래 이렇게 강조하는것일까요?</p> <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">BufferPerformanceTest</span> <span class="o">{</span>
+	<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+		
+		<span class="nc">File</span> <span class="n">src</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">File</span><span class="o">(</span><span class="s">"c:/Windows/explorer.exe"</span><span class="o">);</span>
+		<span class="nc">File</span> <span class="n">target</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">File</span><span class="o">(</span><span class="s">"c:/Temp/copied_explorer.exe"</span><span class="o">);</span>
+		
+		<span class="k">try</span> <span class="o">(</span><span class="nc">FileInputStream</span> <span class="n">fi</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">FileInputStream</span><span class="o">(</span><span class="n">src</span><span class="o">);</span>
+			 <span class="nc">FileOutputStream</span> <span class="n">fo</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">FileOutputStream</span><span class="o">(</span><span class="n">target</span><span class="o">);</span>
+			 <span class="nc">BufferedInputStream</span> <span class="n">bi</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">BufferedInputStream</span><span class="o">(</span><span class="n">fi</span><span class="o">);</span>
+			 <span class="nc">BufferedOutputStream</span> <span class="n">bo</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">BufferedOutputStream</span><span class="o">(</span><span class="n">fo</span><span class="o">);)</span> <span class="o">{</span>
+			
+			 <span class="n">copy</span><span class="o">(</span><span class="s">"FileInputStream"</span><span class="o">,</span> <span class="n">fi</span><span class="o">,</span> <span class="n">fo</span><span class="o">);</span>
+			 <span class="n">copy</span><span class="o">(</span><span class="s">"BufferdInputStream"</span><span class="o">,</span> <span class="n">bi</span><span class="o">,</span> <span class="n">bo</span><span class="o">);</span>
+			
+		<span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+			<span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+		<span class="o">}</span>
+	<span class="o">}</span>
+
+	<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">copy</span><span class="o">(</span><span class="nc">String</span> <span class="n">type</span><span class="o">,</span> <span class="nc">InputStream</span> <span class="n">input</span><span class="o">,</span> <span class="nc">OutputStream</span> <span class="n">output</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">IOException</span> <span class="o">{</span>
+		<span class="kt">long</span> <span class="n">start</span> <span class="o">=</span> <span class="nc">System</span><span class="o">.</span><span class="na">nanoTime</span><span class="o">();</span>
+		<span class="kt">byte</span><span class="o">[]</span> <span class="n">cart</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">byte</span><span class="o">[</span><span class="mi">1024</span><span class="o">];</span>
+		<span class="kt">int</span> <span class="n">read</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span>
+		<span class="k">while</span> <span class="o">((</span><span class="n">read</span> <span class="o">=</span> <span class="n">input</span><span class="o">.</span><span class="na">read</span><span class="o">(</span><span class="n">cart</span><span class="o">))</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+			<span class="n">output</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="n">cart</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="n">read</span><span class="o">);</span>
+		<span class="o">}</span>
+		<span class="kt">long</span> <span class="n">end</span> <span class="o">=</span> <span class="nc">System</span><span class="o">.</span><span class="na">nanoTime</span><span class="o">();</span>
+		<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">type</span> <span class="o">+</span> <span class="s">", 소요 시간: "</span> <span class="o">+</span> <span class="o">(</span><span class="n">end</span> <span class="o">-</span> <span class="n">start</span><span class="o">)</span> <span class="o">+</span> <span class="s">"ns"</span><span class="o">);</span>
+	<span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div> <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>출력결과 :
+FileInputStream, 소요 시간: 19264500ns
+BufferdInputStream, 소요 시간: 14100ns
+</code></pre></div></div> <p>ㄷㄷ 이정도나 차이날줄은 몰랐다.</p> <h3 id="13-소켓통신">13. 소켓통신</h3> <h5 id="udp">UDP</h5> <ul> <li>데이터 통신 방식으로, 송신측에서 데이터를 전송하고 수신측에서 받고 별도의 데이터 신뢰성 확인 행위를 하지않는 방식. <br> Java에서는 Datagramsocket, DatagramPacket 을 이용한다.</li> </ul> <h5 id="tcp">TCP</h5> <ul> <li>데이터를 전달하고 얼마나 전달됬는지 확인하는 등의 확인과정을 통해(3-handShake) 신뢰도가 높은 통신방식으로 Java에서는 Socket을 이용하여 사용한다. Http 프로토콜이 TCP 기반으로 정의되었다.</li> </ul> <p>ServerSocket - 서버단의 소켓<br> Socket - 클라이언트의 소켓</p> <h4 id="간단한-소켓프로그램으로-서버에서-보내는-문자를-클라이언트에-받는-프로그램을-구성할때의-서버-클라이언트-요구사항">간단한 소켓프로그램으로 서버에서 보내는 문자를 클라이언트에 받는 프로그램을 구성할때의 서버-클라이언트 요구사항</h4> <p>Client</p> <ul> <li>서버(host)의 IP와 포트번호</li> <li>socket 객체 생성(host,ip)</li> <li>socket 객체에서 inputStream 핸들링하기</li> <li>InputStreamReader를 통해 inputStream(byte data)를 읽고, 이를 BufferedReader 로 체이닝하여 사용.</li> <li>그다음 BufferedReader를 이용해 data read하기.</li> </ul> <p>Server</p> <ul> <li>서버소켓 생성(포트번호 기입)</li> <li>클라이언트 소켓이 접속할때까지 대기</li> <li>접속 하면 해당 클라이언트 소켓의 OutputStream 핸들링</li> <li>outputStreamWriter을 통해 stream 생성하여 작성하고 보내기</li> </ul> <h3 id="simple-server-client-구현해보기">simple server-client 구현해보기</h3> <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/*서버 */</span>
+<span class="kn">import</span> <span class="nn">java.io.IOException</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.io.OutputStream</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.io.PrintWriter</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.net.ServerSocket</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.net.Socket</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">NetworkSimpleServer</span> <span class="o">{</span>
+
+	<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+		<span class="kt">int</span> <span class="n">port</span> <span class="o">=</span> <span class="mi">5100</span><span class="o">;</span>
+		
+		<span class="k">try</span> <span class="o">(</span><span class="nc">ServerSocket</span> <span class="n">serverSocket</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ServerSocket</span><span class="o">(</span><span class="n">port</span><span class="o">))</span> <span class="o">{</span>
+			
+			<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"NetworkSimpleServer Started"</span><span class="o">);</span>
+			
+			<span class="k">while</span> <span class="o">(</span><span class="kc">true</span><span class="o">)</span> <span class="o">{</span>
+				<span class="nc">Socket</span> <span class="n">socket</span> <span class="o">=</span> <span class="n">serverSocket</span><span class="o">.</span><span class="na">accept</span><span class="o">();</span>
+				<span class="nc">OutputStream</span> <span class="n">output</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="na">getOutputStream</span><span class="o">();</span>
+				<span class="nc">PrintWriter</span> <span class="n">writer</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">PrintWriter</span><span class="o">(</span><span class="n">output</span><span class="o">,</span> <span class="kc">true</span><span class="o">);</span>
+				<span class="n">writer</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Server : Hello Client!"</span><span class="o">);</span>
+			<span class="o">}</span>
+			
+		 <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+			 <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"NetworkSimpleServer exception: "</span> <span class="o">+</span> <span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
+			 <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+		 <span class="o">}</span>
+		
+		 <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"NetworkSimpleServer Ended"</span><span class="o">);</span>
+	<span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div> <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/*client*/</span>
+<span class="kn">import</span> <span class="nn">java.io.BufferedReader</span><span class="o">;</span>
+	<span class="kn">import</span> <span class="nn">java.io.IOException</span><span class="o">;</span>
+	<span class="kn">import</span> <span class="nn">java.io.InputStream</span><span class="o">;</span>
+	<span class="kn">import</span> <span class="nn">java.io.InputStreamReader</span><span class="o">;</span>
+	<span class="kn">import</span> <span class="nn">java.net.Socket</span><span class="o">;</span>
+	
+	<span class="kd">public</span> <span class="kd">class</span> <span class="nc">NetworkSimpleClient</span> <span class="o">{</span>
+	
+		<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+			<span class="nc">String</span> <span class="n">host</span> <span class="o">=</span> <span class="s">"localhost"</span><span class="o">;</span>
+			<span class="kt">int</span> <span class="n">port</span> <span class="o">=</span> <span class="mi">5100</span><span class="o">;</span>
+			
+			<span class="k">try</span> <span class="o">(</span> <span class="nc">Socket</span> <span class="n">socket</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Socket</span><span class="o">(</span><span class="n">host</span><span class="o">,</span> <span class="n">port</span><span class="o">)</span> <span class="o">)</span> <span class="o">{</span>
+				
+				<span class="nc">InputStream</span> <span class="n">input</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="na">getInputStream</span><span class="o">();</span>
+	            <span class="nc">BufferedReader</span> <span class="n">reader</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">BufferedReader</span><span class="o">(</span><span class="k">new</span> <span class="nc">InputStreamReader</span><span class="o">(</span><span class="n">input</span><span class="o">));</span>
+	 
+	            <span class="nc">String</span> <span class="n">message</span> <span class="o">=</span> <span class="n">reader</span><span class="o">.</span><span class="na">readLine</span><span class="o">();</span>
+	            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">message</span><span class="o">);</span>
+				
+			 <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span> <span class="nc">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+				 <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"NetworkSimpleClient exception: "</span> <span class="o">+</span> <span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
+				 <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+			 <span class="o">}</span>
+		<span class="o">}</span>
+	<span class="o">}</span>
+</code></pre></div></div> <p>이 프로그램은 하나의 서버에 하나의 클라이언트, 즉 일대 일 통신밖에 되지않는다.</p> <p>다대일. 즉 , 한 서버에 여러클라이언트가 접속하는 일반적인 구조의 서버-클라이언트는 어떻게 만들수있을까? 바로 멀티쓰레딩이다.</p> <h4 id="15-쓰레드">15. 쓰레드</h4> <p>메모리에 할당된 프로세스의 흐름을 주관하는 단위. 우리의 모든 코드들은 런타임시에 알게모르게 이미 “메인 쓰레드”에서 돌아가고 있다.</p> <p>하지만 쓰레드를 한개 더 사용한다면, 2개의 프로세스를 동시에 처리할 수 있다.</p> <blockquote> <p><em>손을 한개쓰는거보단 두개쓰는게 낫다!</em></p> </blockquote> <p>그렇다면 쓰레드는 어떻게 구현할까? 2가지 방법이 있다.</p> <ol> <li>Thread를 상속받는 새로운 클래스를 만들어 run() 메소드를 오버라이딩 하기.</li> <li>Runnable 인터페이스를 implements 하여 run() 메소드를 오버라이딩.</li> </ol> <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/* 1번 방식 */</span>
+<span class="nc">Class</span> <span class="n">myThread</span> <span class="kd">extends</span> <span class="nc">Thread</span><span class="o">{</span>
+	<span class="nd">@Override</span>
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">(){</span>
+		 <span class="cm">/*쓰레드가 할 동작 정의*/</span>
+	<span class="o">}</span>
+<span class="o">}</span>
+
+<span class="nc">Class</span> <span class="n">main</span> <span class="kd">implements</span> <span class="nc">Runnable</span><span class="o">{</span>
+	<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">){</span>
+		<span class="nc">Thread</span> <span class="n">t</span><span class="o">=</span><span class="k">new</span> <span class="nc">MyThread</span><span class="o">();</span>
+		<span class="n">t</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
+	<span class="o">}</span>
+	
+<span class="o">}</span>
+</code></pre></div></div> <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/* 2번 방식 */</span>
+<span class="nc">Class</span> <span class="n">myRun</span> <span class="kd">implements</span> <span class="nc">Runnable</span><span class="o">{</span>
+	<span class="nd">@Override</span>
+	<span class="n">publoc</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">(){</span>
+		 <span class="cm">/*쓰레드가 할 동작 정의*/</span>
+	<span class="o">}</span>
+<span class="o">}</span>
+
+<span class="nc">Class</span> <span class="n">main</span> <span class="kd">implements</span> <span class="nc">Runnable</span><span class="o">{</span>
+	<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">){</span>
+		<span class="nc">Thread</span> <span class="n">t</span><span class="o">=</span><span class="k">new</span> <span class="nc">Thread</span><span class="o">(</span><span class="k">new</span> <span class="n">myRun</span><span class="o">());</span>
+		<span class="n">t</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
+	<span class="o">}</span>
+	
+<span class="o">}</span>
+</code></pre></div></div> <p>쓰레드는 run 메소드를 직접호출하는것이 아니라, start 메소드를 통해 간접적인 run 메소드의 호출을 발생시켜야 정상동작한다.</p> <p>멀티쓰레딩 프로그램을 작성할때, 특정 쓰레드를 기다리거나 자원이 다 사용될때까지 기다릴 필요가 있다. 그럴때에는 다음과같은 메소드를 이용한다.</p> <table> <thead> <tr> <th>메소드</th> <th>내용</th> </tr> </thead> <tbody> <tr> <td>Thread.join()</td> <td>해당 쓰레드가 종료되기를 기다린다.</td> </tr> <tr> <td>Thread.wait()</td> <td>자원을 기다린다</td> </tr> <tr> <td>Thread.notify()</td> <td>대기하고있는 쓰레드에게 다시 작업하라고 알린다</td> </tr> <tr> <td>Thread.interrupt()</td> <td>interruptedException를 발생시킨다</td> </tr> </tbody> </table> <p>쓰레드의 상태는 어떤것이 있을까 ?</p> <table> <thead> <tr> <th>상태</th> <th>설명</th> </tr> </thead> <tbody> <tr> <td>NEW</td> <td>스레드 객체가 생성된 시점</td> </tr> <tr> <td>RUNNABLE</td> <td>객체가 생성되고, 실행준비가 완료된 상태</td> </tr> <tr> <td>WAITING</td> <td>다른 스레드가 notify할때까지 대기하는 상태</td> </tr> <tr> <td>TIMED_WAITNH</td> <td>주어진 시간동안 기다리는 상태</td> </tr> <tr> <td>BLOCKED</td> <td>사용하고자 하는 자원의 lock이 풀릴때까지 대기하는 상태</td> </tr> <tr> <td>TERMINATED</td> <td>실행을 끝마친 상태</td> </tr> </tbody> </table> <p>간략하게 어떤 상태인지 테스트해보자.</p> <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">com.ssafy.day0819</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Test01</span> <span class="o">{</span>
+	<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+		<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"쓰레드상태확인"</span><span class="o">);</span>
+		<span class="nc">Thread</span> <span class="n">t</span><span class="o">=</span><span class="k">new</span> <span class="nc">Thread</span><span class="o">()</span> <span class="o">{</span>
+			<span class="nd">@Override</span>
+			<span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
+				<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"쓰레드 실행 끝남"</span><span class="o">);</span>
+			<span class="o">}</span>
+		<span class="o">};</span>
+		
+		<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">t</span><span class="o">.</span><span class="na">getState</span><span class="o">().</span><span class="na">name</span><span class="o">());</span>
+		
+		<span class="n">t</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
+		<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">t</span><span class="o">.</span><span class="na">getState</span><span class="o">().</span><span class="na">name</span><span class="o">());</span>
+		
+		<span class="k">try</span> <span class="o">{</span>
+			<span class="nc">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="mi">2000</span><span class="o">);</span>
+		<span class="o">}</span>
+		<span class="k">catch</span><span class="o">(</span><span class="nc">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+			<span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+		<span class="o">}</span>
+		<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">t</span><span class="o">.</span><span class="na">getState</span><span class="o">().</span><span class="na">name</span><span class="o">());</span>
+		
+		<span class="k">try</span> <span class="o">{</span>
+			<span class="n">t</span><span class="o">.</span><span class="na">join</span><span class="o">();</span>
+		<span class="o">}</span><span class="k">catch</span><span class="o">(</span><span class="nc">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+			<span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+		<span class="o">}</span>
+		<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">t</span><span class="o">.</span><span class="na">getState</span><span class="o">().</span><span class="na">name</span><span class="o">());</span>
+		
+	<span class="o">}</span>
+	
+<span class="o">}</span>
+
+</code></pre></div></div> <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>실행결과:
+쓰레드상태확인
+NEW
+RUNNABLE
+쓰레드 실행 끝남
+TERMINATED
+TERMINATED
+</code></pre></div></div> <p>join과 wait는 직접 사용해보는것으로.</p> <h4 id="simple-horse-game">simple horse game</h4> <p>```java import java.util.Random;</p> <p>class Horse extends Thread{ Horse(String name){ super(name); } @Override public void run() { Random r =new Random(); int distance= 0; while(true) { distance+=r.nextInt(90)+11; if(distance &gt; 10000) return ; System.out.println(this.getName()+”말 :”+(distance/100)+ “m 뛰고있음”); try { Thread.sleep(100); } catch(Exception e) {} } } }</p> <p>public class Test02 { public static void main(String[] args) {</p> <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>	Horse h1=new Horse("1번");
+	Horse h2=new Horse("2번");
+	Horse h3=new Horse("3번");
+	Horse h4=new Horse("4번");
+	System.out.println("경주를 시작합니다.");
+	h1.start();h2.start();h3.start();h4.start();
+	try{h1.join();h2.join();h3.join();h4.join();}
+	catch(Exception e){e.printStackTrace();}
+	System.out.println("경기가 종료되었습니다.");
+}
+</code></pre></div></div> <p>}</p> <footer class="post-modified-date"> <p> Updated <time datetime=" 2020-12-28T23:47:43+08:00 "> Monday, Dec 28, 2020 </time> </p> </footer> </div> </article> </main> <footer class="footer"> <ul> <li><a href="/">Jaehyun Park Dev Blog</a></li> <li> <a href="https://sparanoid.com/lab/amsf/" title="Almace Scaffolding with theme Curtana">AMSF</a> </li> </ul> </footer> <script></script> <script></script> <script>"serviceWorker"in navigator&&"jaehyunup.github.io"===window.location.hostname&&navigator.serviceWorker.register("/service-worker.js").then(function(e){console.log("ServiceWorker registration successful with scope: ",e.scope)}).catch(function(e){console.log("ServiceWorker registration failed: ",e)})</script></body></html>

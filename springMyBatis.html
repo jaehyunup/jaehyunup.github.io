@@ -1,0 +1,251 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"> <title>Spring Boot + MyBatis (Configuration) - Jaehyun Park Dev Blog</title> <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"> <meta name="description" content="구글링해서 나온 Spring Boot + MyBatis 연동 예제는 legacy 코드가 너무 많았다. SpringBoot 와 mybatis를 연동해서 토이프로젝트를 진행하는 도중에 구글링을 여러번 하면서 다양한분들의 예제코드를 많이 봤다. 하지만 최근에 올라온 글임에도 불구하고 legacy 코드를 그대로 사용 하시는 분들도 있는걸 많이 보았고,..."> <meta name="theme-color" content="#ff00b4"> <link rel="alternate" href="/feed.xml" type="application/atom+xml"> <link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="icon" href="/favicon.png" type="image/png"><link rel="icon" href="data:image/svg+xml;utf8,%3Csvg%20width%3D'240'%20height%3D'240'%20viewBox%3D'0%200%20240%20240'%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%3E%3Ctitle%3EAlmace%20Scaffolding%3C%2Ftitle%3E%3Cpath%20d%3D'M62.563%20189.292C42.669%20172.783%2030%20147.872%2030%20120c0-49.706%2040.294-90%2090-90s90%2040.294%2090%2090c0%2038.573-24.266%2071.478-58.365%2084.283L168.568%2097h-24.752l-17.804%20112.802A91.344%2091.344%200%200%201%20120%20210c-12.356%200-24.13-2.49-34.85-6.996L95.568%20137H70.816l-8.253%2052.292z'%20fill%3D'%23FF00B4'%20fill-rule%3D'evenodd'%2F%3E%3C%2Fsvg%3E" sizes="any" type="image/svg+xml"><link rel="mask-icon" href="/mask-icon.svg" color="#ff00b4"> <link rel="manifest" href="/manifest.json"> <style>:root{--fontstack-prefix:-apple-system,BlinkMacSystemFont,;--fontstack-sans-serif:"Helvetica Neue",Arial,sans-serif;--fontstack-serif:Georgia,serif;--fontstack-monospace:Menlo,Consolas,monospace;--fontstack-default:var(--fontstack-prefix) var(--fontstack-sans-serif);--font-size-base:1rem;--font-size-factor:1vw;--font-size:1.6vw;--font-features:"halt","cv01","cv02","cv03";--line-height:calc(20 / 14);--heading-letter-spacing:-.04em;--breakpoint-lg:1600px;--breakpoint-md:1080px;--breakpoint-sm:640px;--breakpoint-xs:400px;--space-lg:24vw;--space-md:8vw;--space-sm:4vw;--space-xs:1.2vw;--border-lg:4px;--border-md:2px;--border-sm:1px;--nav-padding:.75vmax;--nav-item-space:1.4vmax;--text-color-h:318;--text-color-s:30%;--text-color-l:10%;--text-color-hsl:var(--text-color-h),var(--text-color-s),var(--text-color-l);--text-color:hsl(var(--text-color-hsl));--text-color-0:hsla(var(--text-color-hsl), 0);--text-color-3:hsla(var(--text-color-hsl), .03);--text-color-5:hsla(var(--text-color-hsl), .05);--text-color-7:hsla(var(--text-color-hsl), .07);--text-color-10:hsla(var(--text-color-hsl), .1);--text-color-20:hsla(var(--text-color-hsl), .2);--text-color-30:hsla(var(--text-color-hsl), .3);--text-color-40:hsla(var(--text-color-hsl), .4);--text-color-50:hsla(var(--text-color-hsl), .5);--text-color-60:hsla(var(--text-color-hsl), .6);--text-color-70:hsla(var(--text-color-hsl), .7);--text-color-80:hsla(var(--text-color-hsl), .8);--text-color-90:hsla(var(--text-color-hsl), .9);--text-color-light:hsl(var(--text-color-h), var(--text-color-s), calc(var(--text-color-l) / .9));--text-color-dark:hsl(var(--text-color-h), var(--text-color-s), calc(var(--text-color-l) * .9));--link-color-h:318;--link-color-s:100%;--link-color-l:50%;--link-color-hsl:var(--link-color-h),var(--link-color-s),var(--link-color-l);--link-color:hsl(var(--link-color-hsl));--link-color-0:hsla(var(--link-color-hsl), 0);--link-color-3:hsla(var(--link-color-hsl), .03);--link-color-5:hsla(var(--link-color-hsl), .05);--link-color-7:hsla(var(--link-color-hsl), .07);--link-color-10:hsla(var(--link-color-hsl), .1);--link-color-20:hsla(var(--link-color-hsl), .2);--link-color-30:hsla(var(--link-color-hsl), .3);--link-color-40:hsla(var(--link-color-hsl), .4);--link-color-50:hsla(var(--link-color-hsl), .5);--link-color-60:hsla(var(--link-color-hsl), .6);--link-color-70:hsla(var(--link-color-hsl), .7);--link-color-80:hsla(var(--link-color-hsl), .8);--link-color-90:hsla(var(--link-color-hsl), .9);--link-color-light:hsl(var(--link-color-h), var(--link-color-s), calc(var(--link-color-l) / .9));--link-color-dark:hsl(var(--link-color-h), var(--link-color-s), calc(var(--link-color-l) * .9));--bg-color-h:318;--bg-color-s:30%;--bg-color-l:100%;--bg-color-hsl:var(--bg-color-h),var(--bg-color-s),var(--bg-color-l);--bg-color:hsl(var(--bg-color-hsl));--bg-color-0:hsla(var(--bg-color-hsl), 0);--bg-color-3:hsla(var(--bg-color-hsl), .03);--bg-color-5:hsla(var(--bg-color-hsl), .05);--bg-color-7:hsla(var(--bg-color-hsl), .07);--bg-color-10:hsla(var(--bg-color-hsl), .1);--bg-color-20:hsla(var(--bg-color-hsl), .2);--bg-color-30:hsla(var(--bg-color-hsl), .3);--bg-color-40:hsla(var(--bg-color-hsl), .4);--bg-color-50:hsla(var(--bg-color-hsl), .5);--bg-color-60:hsla(var(--bg-color-hsl), .6);--bg-color-70:hsla(var(--bg-color-hsl), .7);--bg-color-80:hsla(var(--bg-color-hsl), .8);--bg-color-90:hsla(var(--bg-color-hsl), .9);--bg-color-light:hsl(var(--bg-color-h), var(--bg-color-s), calc(var(--bg-color-l) / .9));--bg-color-dark:hsl(var(--bg-color-h), var(--bg-color-s), calc(var(--bg-color-l) * .9));--code-color-h:calc(var(--link-color-h) + 30);--code-color-s:calc(var(--link-color-s) * .2 + 30%);--code-color-l:var(--link-color-l);--code-color-hsl:var(--code-color-h),var(--code-color-s),var(--code-color-l);--code-color:hsl(var(--code-color-hsl));--code-color-0:hsla(var(--code-color-hsl), 0);--code-color-3:hsla(var(--code-color-hsl), .03);--code-color-5:hsla(var(--code-color-hsl), .05);--code-color-7:hsla(var(--code-color-hsl), .07);--code-color-10:hsla(var(--code-color-hsl), .1);--code-color-20:hsla(var(--code-color-hsl), .2);--code-color-30:hsla(var(--code-color-hsl), .3);--code-color-40:hsla(var(--code-color-hsl), .4);--code-color-50:hsla(var(--code-color-hsl), .5);--code-color-60:hsla(var(--code-color-hsl), .6);--code-color-70:hsla(var(--code-color-hsl), .7);--code-color-80:hsla(var(--code-color-hsl), .8);--code-color-90:hsla(var(--code-color-hsl), .9);--code-color-light:hsl(var(--code-color-h), var(--code-color-s), calc(var(--code-color-l) / .9));--code-color-dark:hsl(var(--code-color-h), var(--code-color-s), calc(var(--code-color-l) * .9))}*,::after,::before{padding:0;margin:0;box-sizing:border-box}html{font-size:100%;-webkit-text-size-adjust:none;-moz-text-size-adjust:none;-ms-text-size-adjust:none;text-size-adjust:none;text-rendering:optimizelegibility;image-rendering:optimizequality;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;background:var(--bg-color)}body{--space-body:var(--space-lg);padding-top:0;padding-bottom:0;padding-left:var(--space-body);padding-right:var(--space-body);margin:0 auto 0;font-family:var(--fontstack-default);font-size:var(--font-size);font-feature-settings:var(--font-features);line-height:var(--line-height);hanging-punctuation:first allow-end;color:var(--text-color);background:var(--bg-color);transition:all .2s ease}@media (max-width:1080px){body{--space-body:var(--space-md);font-size:calc(var(--font-size) * 1.4)}}@media (max-width:640px){body{--space-body:var(--space-sm);font-size:calc(var(--font-size) * 2.4)}}@media (max-width:400px){body{font-size:calc(var(--font-size) * 3.2)}}a{color:var(--text-color);text-decoration:none;transition:color .5s ease,border-color .5s ease,background .5s ease,opacity 1.5s ease}a:focus,a:hover{transition:color .1s ease,border-color .1s ease,background .1s ease,opacity .1s ease;text-decoration:underline}img{border:0}::-webkit-input-placeholder{color:var(--text-color);opacity:.2}:-ms-input-placeholder{color:var(--text-color);opacity:.2}::-ms-input-placeholder{color:var(--text-color);opacity:.2}:focus::-webkit-input-placeholder{color:var(--link-color)}:focus:-ms-input-placeholder{color:var(--link-color)}:focus::-ms-input-placeholder{color:var(--link-color)}.navigation{padding-top:var(--nav-padding);padding-bottom:var(--nav-padding);margin-right:calc(var(--nav-item-space) * -1);margin-left:calc(var(--nav-item-space) * -1);font-size:90%;font-weight:700}.navigation li{display:inline-block;line-height:2}.navigation li a{padding:.5em var(--nav-item-space)}.navigation li a:focus,.navigation li a:hover{color:var(--link-color);text-decoration:none}.content{margin-bottom:16vmin}.content::after,.content::before{display:table;content:""}.content::after{clear:both}.content article>:last-child{margin-bottom:0!important}.content article>:last-child>:last-child{margin-bottom:0!important}.content article>:last-child>:last-child>:last-child{margin-bottom:0!important}.content article>:last-child>:last-child>:last-child>:last-child{margin-bottom:0!important}.content .post-content>:first-child{margin-top:0}.content a:has(>code){-webkit-text-decoration-color:var(--code-color);text-decoration-color:var(--code-color)}.content p{margin-bottom:1.6rem;line-height:calc(var(--line-height) * 1.2)}.content header{--header-height:100vh;--space-header:var(--space-lg);display:flex;min-height:calc(var(--header-height) - (var(--nav-padding) * 4) - (var(--nav-item-space) * 4) - (1ex * .9 * 2));padding-top:10vmin;padding-bottom:10vmin;margin-bottom:16vmin;flex-direction:column;justify-content:center;background:var(--text-color-3);padding-left:var(--space-header);padding-right:var(--space-header);margin-left:calc(var(--space-header) * -1);margin-right:calc(var(--space-header) * -1)}@media (max-width:1080px){.content header{--header-height:70vh;--space-header:var(--space-md);padding-top:16vmin;padding-bottom:16vmin}}@media (max-width:640px){.content header{--space-header:var(--space-sm)}}.content header h1{font-size:360%;font-weight:700;letter-spacing:var(--heading-letter-spacing);margin-left:-2px;-webkit-hyphens:none;-ms-hyphens:none;hyphens:none;line-height:1.1}@media (max-width:640px){.content header h1{font-size:280%}}.content header small{display:block;margin-top:2vmin}.content h2,.content h3,.content h4{margin:10vmin 0 1rem;font-size:72%;font-weight:400;opacity:.5}.content ul{margin-bottom:1.8rem;list-style:none;counter-reset:list}@media (max-width:640px){.content ul{margin-left:1em}}.content ul li{line-height:calc(var(--line-height) * 1.2)}.content ul li::before{position:absolute;display:flex;justify-content:flex-end;width:4em;margin-top:0;margin-left:-4em;text-align:right;opacity:.4;pointer-events:none}.content ul li::before{content:"-";padding-right:.5em}.content img{--space-deco:var(--space-md);display:block;width:calc(100% + var(--space-deco) * 2);margin-left:calc(var(--space-deco) * -1);margin-right:calc(var(--space-deco) * -1);margin-bottom:1.8rem}@media (max-width:1080px){.content img{--space-deco:var(--space-md)}}@media (max-width:640px){.content img{--space-deco:var(--space-sm)}}.content code,.content pre{font-family:var(--fontstack-monospace);color:var(--code-color)}.content pre{background:var(--code-color-5)}.content code{font-size:92%;overflow-wrap:break-word}.content .highlight>pre,.content .highlighter-rouge pre.highlight,.content pre{--space-code:var(--space-xs);padding-top:var(--space-xs);padding-bottom:var(--space-xs);padding-left:var(--space-code);padding-right:var(--space-code);margin-left:calc(var(--space-code) * -1);margin-right:calc(var(--space-code) * -1);margin-bottom:1.8rem;overflow-x:auto;font-size:80%;line-height:calc(var(--line-height) * 1.2);-webkit-overflow-scrolling:touch}@media (max-width:1080px){.content .highlight>pre,.content .highlighter-rouge pre.highlight,.content pre{--space-code:var(--space-md)}}@media (max-width:640px){.content .highlight>pre,.content .highlighter-rouge pre.highlight,.content pre{--space-code:var(--space-sm)}}.content .highlight>pre code,.content .highlighter-rouge pre.highlight code,.content pre code{overflow-wrap:normal}.post-modified-date{font-size:75%;opacity:.5}@media only percy{.post-modified-date{display:none}}.footer{padding:0 0 16vmin;margin-right:calc(var(--nav-item-space) * -1);margin-left:calc(var(--nav-item-space) * -1);font-size:80%;text-transform:lowercase}.footer ul li{display:inline-block;line-height:1.8}.footer ul li a{padding:.5em var(--nav-item-space)}@media print{*,::after,::before{background:0 0!important;color:#000!important;box-shadow:none!important;text-shadow:none!important}body{padding:10mm!important;margin:0!important;font-size:calc(var(--font-size) * 1.35)}a,a:visited{text-decoration:none}.content header{min-height:0;padding-bottom:0}.content .post-content{max-width:100%!important}pre{page-break-inside:avoid}img{page-break-inside:avoid}img{max-width:100%!important}h2,h3,h4,p{orphans:3;widows:3}h2,h3{page-break-after:avoid}.footer,.navigation{display:none}}:root{--rdmz-h:var(--code-color-h, 254);--rdmz-s:var(--code-color-s, 80%);--rdmz-l:var(--code-color-l, 39%)}.highlight>pre,.highlighter-rouge pre.highlight{background:hsla(var(--rdmz-h),var(--rdmz-s),var(--rdmz-l),.03)}.highlight .c,.highlighter-rouge .c{font-style:italic}.highlight .cm,.highlighter-rouge .cm{font-style:italic}.highlight .cp,.highlighter-rouge .cp{font-weight:700}.highlight .nc,.highlighter-rouge .nc{font-weight:700}.highlight .nf,.highlighter-rouge .nf{font-weight:700}.highlight .o,.highlighter-rouge .o{font-weight:700}.highlight .k,.highlighter-rouge .k{font-weight:700}.highlight .kt,.highlighter-rouge .kt{font-weight:700}.highlight .kd,.highlighter-rouge .kd{font-weight:700}.highlight code,.highlight pre,.highlighter-rouge code,.highlighter-rouge pre{--rdmz-h-local:var(--rdmz-h);color:hsl(var(--rdmz-h),var(--rdmz-s),var(--rdmz-l))}.highlight .n,.highlighter-rouge .n{--rdmz-h-local:calc(var(--rdmz-h) + 16.1194029851);color:hsl(var(--rdmz-h-local),var(--rdmz-s),var(--rdmz-l))}.highlight .na,.highlighter-rouge .na{--rdmz-h-local:calc(var(--rdmz-h) + 21.4925373134);color:hsl(var(--rdmz-h-local),var(--rdmz-s),var(--rdmz-l))}.highlight .nc,.highlighter-rouge .nc{--rdmz-h-local:calc(var(--rdmz-h) + 37.6119402985);color:hsl(var(--rdmz-h-local),var(--rdmz-s),var(--rdmz-l))}.highlight .nd,.highlighter-rouge .nd{--rdmz-h-local:calc(var(--rdmz-h) + 48.3582089552);color:hsl(var(--rdmz-h-local),var(--rdmz-s),var(--rdmz-l))}.highlight .nf,.highlighter-rouge .nf{--rdmz-h-local:calc(var(--rdmz-h) + 64.4776119403);color:hsl(var(--rdmz-h-local),var(--rdmz-s),var(--rdmz-l))}.highlight .nt,.highlighter-rouge .nt{--rdmz-h-local:calc(var(--rdmz-h) + 85.9701492537);color:hsl(var(--rdmz-h-local),var(--rdmz-s),var(--rdmz-l))}.highlight .k,.highlighter-rouge .k{--rdmz-h-local:calc(var(--rdmz-h) + 177.313432836);color:hsl(var(--rdmz-h-local),var(--rdmz-s),var(--rdmz-l))}.highlight .kd,.highlighter-rouge .kd{--rdmz-h-local:calc(var(--rdmz-h) + 188.059701493);color:hsl(var(--rdmz-h-local),var(--rdmz-s),var(--rdmz-l))}.highlight .kt,.highlighter-rouge .kt{--rdmz-h-local:calc(var(--rdmz-h) + 209.552238806);color:hsl(var(--rdmz-h-local),var(--rdmz-s),var(--rdmz-l))}.highlight .s,.highlighter-rouge .s{--rdmz-h-local:calc(var(--rdmz-h) + 236.417910448);color:hsl(var(--rdmz-h-local),var(--rdmz-s),var(--rdmz-l))}.highlight .mi,.highlighter-rouge .mi{--rdmz-h-local:calc(var(--rdmz-h) + 317.014925373);color:hsl(var(--rdmz-h-local),var(--rdmz-s),var(--rdmz-l))}.highlight .o,.highlighter-rouge .o{--rdmz-h-local:calc(var(--rdmz-h) + 343.880597015);color:hsl(var(--rdmz-h-local),var(--rdmz-s),var(--rdmz-l))}.highlight .c,.highlighter-rouge .c{color:hsla(calc(var(--rdmz-h) + 5.3731343284),calc(var(--rdmz-s) * .7),var(--rdmz-l),.6)}.highlight .cm,.highlighter-rouge .cm{color:hsla(calc(var(--rdmz-h) + 16.1194029851),calc(var(--rdmz-s) * .7),var(--rdmz-l),.6)}.highlight .cp,.highlighter-rouge .cp{color:hsla(calc(var(--rdmz-h) + 21.4925373134),calc(var(--rdmz-s) * .7),var(--rdmz-l),.6)}:root{--code-color-h:calc(var(--link-color-h) + 10);--code-color-s:calc(var(--link-color-s) * .2 + 40%)}@media (prefers-color-scheme:dark){:root{--text-color-l:95%;--bg-color-l:14%;--bg-color-s:2%;--code-color-l:calc(var(--link-color-l) * 1.3)}}</style> <link rel="canonical" href="https://jaehyunup.github.io/springMyBatis.html"> <meta property="og:type" content="article"> <meta property="og:site_name" content="Jaehyun Park Dev Blog"> <meta property="og:title" content="Spring Boot + MyBatis (Configuration)"> <meta property="og:url" content="https://jaehyunup.github.io/springMyBatis.html"> <meta property="og:description" content="구글링해서 나온 Spring Boot + MyBatis 연동 예제는 legacy 코드가 너무 많았다. SpringBoot 와 mybatis를 연동해서 토이프로젝트를 진행하는 도중에 구글링을 여러번 하면서 다양한분들의 예제코드를 많이 봤다. 하지만 최근에 올라온 글임에도 불구하고 legacy 코드를 그대로 사용 하시는 분들도 있는걸 많이 보았고,..."> <meta property="og:image" content="/img/2020_10_21_data.png"> <meta name="twitter:card" content="summary_large_image"> <meta name="twitter:site" content="@sparanoid"> <meta property="article:published_time" content="2020-10-21T00:00:00-07:00"> <meta property="article:modified_time" content="2020-12-28T23:47:43-08:00"> <meta name="twitter:label1" value="Words"> <meta name="twitter:data1" value="1805 words"> <meta name="twitter:label2" value="Reading time"> <meta name="twitter:data2" value="9 mins"> </head><body><nav class="navigation"> <ul> <li> <a href="/">홈</a> </li> <li> <a href="/posts/">포스트</a> </li> <li> <a href="/about/">박재현</a> </li> </ul> </nav> <main class="content" role="main"> <article lang="en"> <header> <h1 title="Spring Boot + MyBatis (Configuration)" data-title="Spring Boot + MyBatis (Configuration)"> Spring Boot + MyBatis (Configuration)<span class="dot dot--post"> </span> </h1> <small> By <span rel="author"></span> on <time datetime="2020-10-21T00:00:00-07:00">Oct 21, 2020</time> </small> </header> <div class="post-content"> <h2 id="구글링해서-나온-spring-boot--mybatis-연동-예제는-legacy-코드가-너무-많았다">구글링해서 나온 Spring Boot + MyBatis 연동 예제는 legacy 코드가 너무 많았다.</h2> <p>SpringBoot 와 mybatis를 연동해서 토이프로젝트를 진행하는 도중에 구글링을 여러번 하면서 다양한분들의 예제코드를 많이 봤다. 하지만 최근에 올라온 글임에도 불구하고 legacy 코드를 그대로 사용 하시는 분들도 있는걸 많이 보았고, 개개인의 주관이 없다고 느껴졌다. 그 판단이 틀리던 맞던 자기 주관이 있어야 고칠수있다고 생각한다. 나는 연동부분을 간단하게 테스트해보며 어떻게 사용하는게 맞는지 적어보려고 한다.</p> <h2 id="--spring-boot와-mybatis-연동하기mysqlmaven">- Spring boot와 Mybatis 연동하기(MySQL,Maven)</h2> <h3 id="1-maven을-이용해-mabatis-와-mysql과-연결해줄-connector-의존성을-주입한다">1. Maven을 이용해 mabatis 와 MySQL과 연결해줄 connector 의존성을 주입한다.</h3> <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!-- https://mvnrepository.com/artifact/org.mybatis.spring.boot/mybatis-spring-boot-starter --&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>org.mybatis.spring.boot<span class="nt">&lt;/groupId&gt;</span>
+	    <span class="nt">&lt;artifactId&gt;</span>mybatis-spring-boot-starter<span class="nt">&lt;/artifactId&gt;</span>
+		<span class="nt">&lt;version&gt;</span>2.1.3<span class="nt">&lt;/version&gt;</span>
+	<span class="nt">&lt;/dependency&gt;</span>
+	<span class="nt">&lt;dependency&gt;</span>
+		<span class="nt">&lt;groupId&gt;</span>mysql<span class="nt">&lt;/groupId&gt;</span>
+		<span class="nt">&lt;artifactId&gt;</span>mysql-connector-java<span class="nt">&lt;/artifactId&gt;</span>
+	<span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div></div> <h3 id="2-db-연결을-위한-프로퍼티를-만들기위해-applicationproperties-파일-수정하기">2. DB 연결을 위한 프로퍼티를 만들기위해 application.properties 파일 수정하기</h3> <p>파일경로 : src/main/resources/application.properties</p> <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>spring.datasource.hikari.driver-class-name=com.mysql.cj.jdbc.Driver
+spring.datasource.hikari.jdbc-url=jdbc:mysql://포스트주소:포트/데이터베이스명?characterEncoding=DB캐릭터셋&amp;serverTimezone=DB서버타임존
+spring.datasource.hikari.username=DB접속시 사용할 아이디 
+spring.datasource.hikari.password=DB접속 사용할비밀번호
+</code></pre></div></div> <h3 id="3-configuration-class를-이용하여-datasourcesqlfactory-bean-등록하기">3. configuration class를 이용하여 DataSource,SqlFactory Bean 등록하기</h3> <p>mvc에서는 application-Context.xml을 이용해서 빈을 등록합니다. 하지만 스프링진영에서 스프링부트를 메인으로 내세우고있고, mvc로 개발하던 자바 개발자들이 xml 지옥에 빠진것을 알고 최신버전으로 올라갈수록 xml을 지양하는 움직임을 보이고 있는것 같습니다. 그래서 저는 @Configuration 어노테이션을 이용하여 설정합니다.</p> <p><strong>1. configuration class는 어떻게 로딩될까?</strong></p> <p>스프링부트에서 configuration 어노테이션이 붙은 클래스는 스프링 부트 어플리케이션이 로드될때 Component-scan 을 통해 해석되게 됩니다. Spring boot 기준으로, main 메서드에서 다음과 같은 메서드를 부릅니다.</p> <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@SpringBootApplication</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">AuthappApplication</span> <span class="o">{</span>
+	<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+		<span class="nc">SpringApplication</span><span class="o">.</span><span class="na">run</span><span class="o">(</span><span class="nc">AuthappApplication</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">args</span><span class="o">);</span>
+	<span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div> <p>이 위에 선언된 @SpringBootApplication 어노테이션의 구현부를 간단히 살펴보면 아래와같습니다.</p> <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Target</span><span class="o">(</span><span class="nc">ElementType</span><span class="o">.</span><span class="na">TYPE</span><span class="o">)</span>
+<span class="nd">@Retention</span><span class="o">(</span><span class="nc">RetentionPolicy</span><span class="o">.</span><span class="na">RUNTIME</span><span class="o">)</span>
+<span class="nd">@Documented</span>
+<span class="nd">@Inherited</span>
+<span class="nd">@SpringBootConfiguration</span>
+<span class="nd">@EnableAutoConfiguration</span>
+<span class="nd">@ComponentScan</span><span class="o">(</span><span class="n">excludeFilters</span> <span class="o">=</span> <span class="o">{</span> <span class="nd">@Filter</span><span class="o">(</span><span class="n">type</span> <span class="o">=</span> <span class="nc">FilterType</span><span class="o">.</span><span class="na">CUSTOM</span><span class="o">,</span> <span class="n">classes</span> <span class="o">=</span> <span class="nc">TypeExcludeFilter</span><span class="o">.</span><span class="na">class</span><span class="o">),</span>
+		<span class="nd">@Filter</span><span class="o">(</span><span class="n">type</span> <span class="o">=</span> <span class="nc">FilterType</span><span class="o">.</span><span class="na">CUSTOM</span><span class="o">,</span> <span class="n">classes</span> <span class="o">=</span> <span class="nc">AutoConfigurationExcludeFilter</span><span class="o">.</span><span class="na">class</span><span class="o">)</span> <span class="o">})</span>
+<span class="kd">public</span> <span class="nd">@interface</span> <span class="nc">SpringBootApplication</span> <span class="o">{</span>
+    <span class="cm">/* 생략 */</span>
+<span class="o">}</span>
+</code></pre></div></div> <p>보시다시피 ConponentScan 어노테이션을 통해 컴포넌트들을 스캔하고 있습니다.</p> <p>그래서 우리가 클래스를 만들어 @configuration 어노테이션을 등록했을때 이것을 컴포넌트라고 인식하고 스캔하게됩니다. 하지만, component라고 선언한것도 아닌데 어떻게 컴포넌트로 인식하고 스캔할까요? 답은 @Configuration 어노테이션의 구현부를 살펴보면 됩니다.</p> <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Target</span><span class="o">(</span><span class="nc">ElementType</span><span class="o">.</span><span class="na">TYPE</span><span class="o">)</span>
+<span class="nd">@Retention</span><span class="o">(</span><span class="nc">RetentionPolicy</span><span class="o">.</span><span class="na">RUNTIME</span><span class="o">)</span>
+<span class="nd">@Documented</span>
+<span class="nd">@Component</span>
+<span class="kd">public</span> <span class="nd">@interface</span> <span class="nc">Configuration</span> <span class="o">{</span>
+    <span class="cm">/*생략 */</span>
+<span class="o">}</span>
+</code></pre></div></div> <p>@Configuration 어노테이션의 구현에서 이미 @Component 어노테이션을 물고있습니다. 그래서 우리가 @Configuration 어노테이션만 적어도 이미 컴포넌트로서 인식되고 있습니다.</p> <p>이제 이해했으니 Configuration 클래스를 작성해보겠습니다.</p> <p><strong>2. configuration class 구현</strong></p> <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/**
+ * @packageName : com.jaehyun.authapp.configuration
+ * @fileName : DatabaseConfiguration.java
+ * @author : parkjaehyun
+ * @date : 2020.10.20
+ * @description : 데이터베이스 설정 클래스
+ *  ============================================================================
+ *     DATE 	 AUTHOR      NOTE 
+ *  ---------------------------------------------------------------------------- 
+ *  2020.10.20 parkjaehyun   최초생성 
+ *  2020.10.20 parkjaehyun   커넥션풀은 hikariCP를 이용, Mybatis 설정
+ */</span>
+
+<span class="nd">@Configuration</span>
+<span class="nd">@PropertySource</span><span class="o">(</span><span class="s">"classpath:/application.properties"</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">DatabaseConfiguration</span> <span class="o">{</span>
+	<span class="nd">@Autowired</span>
+	<span class="nc">ApplicationContext</span> <span class="n">applicationContext</span><span class="o">;</span>
+
+	<span class="cm">/**
+	 * @methodName : hikariConfig
+	 * @author : jaehyun Park
+	 * @date : 2020.10.20
+	 * @description : hikari Connection pool option을 properties에서 가져와 등록.
+	 * @return
+	 */</span>
+	<span class="nd">@Bean</span>
+	<span class="nd">@ConfigurationProperties</span><span class="o">(</span><span class="n">prefix</span> <span class="o">=</span> <span class="s">"spring.datasource.hikari"</span><span class="o">)</span>
+	<span class="kd">public</span> <span class="nc">HikariConfig</span> <span class="nf">hikariConfig</span><span class="o">()</span> <span class="o">{</span>
+		<span class="k">return</span> <span class="k">new</span> <span class="nf">HikariConfig</span><span class="o">();</span>
+	<span class="o">}</span>
+
+	<span class="cm">/**
+	 * @methodName : dataSource
+	 * @author : jaehyun Park
+	 * @date : 2020.10.20
+	 * @description : hikari Conntion poll을 이용한 데이터베이스 리소스 객체생성
+	 * @return
+	 * @throws Exception
+	 */</span>
+	<span class="nd">@Bean</span>
+	<span class="kd">public</span> <span class="nc">DataSource</span> <span class="nf">dataSource</span><span class="o">()</span> <span class="kd">throws</span> <span class="nc">Exception</span> <span class="o">{</span>
+		<span class="nc">DataSource</span> <span class="n">dataSource</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">HikariDataSource</span><span class="o">(</span><span class="n">hikariConfig</span><span class="o">());</span>
+		<span class="k">return</span> <span class="n">dataSource</span><span class="o">;</span>
+	<span class="o">}</span>
+
+	<span class="cm">/**
+	 * @methodName : sqlSessionFactory
+	 * @author : jaehyun Park
+	 * @date : 2020.10.20
+	 * @description : Mybatis가 사용할 sqlSessionFactory을 생성한다.
+	 * @param dataSource
+	 * @return
+	 * @throws Exception
+	 */</span>
+	<span class="nd">@Bean</span>
+	<span class="kd">public</span> <span class="nc">SqlSessionFactory</span> <span class="nf">sqlSessionFactory</span><span class="o">(</span><span class="nc">DataSource</span> <span class="n">dataSource</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">Exception</span> <span class="o">{</span>
+		<span class="nc">SqlSessionFactoryBean</span> <span class="n">sqlSessionFactoryBean</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">SqlSessionFactoryBean</span><span class="o">();</span>
+		<span class="n">sqlSessionFactoryBean</span><span class="o">.</span><span class="na">setDataSource</span><span class="o">(</span><span class="n">dataSource</span><span class="o">);</span>
+		<span class="n">sqlSessionFactoryBean</span><span class="o">.</span><span class="na">setMapperLocations</span><span class="o">(</span><span class="n">applicationContext</span><span class="o">.</span><span class="na">getResources</span><span class="o">(</span><span class="s">"classpath:/mappers/**/*.xml"</span><span class="o">));</span>
+		<span class="k">return</span> <span class="n">sqlSessionFactoryBean</span><span class="o">.</span><span class="na">getObject</span><span class="o">();</span>
+	<span class="o">}</span>
+
+	<span class="cm">/**
+	 * @methodName : sqlSessionTemplate
+	 * @author : jaehyun Park
+	 * @date : 2020.10.20
+	 * @description : mybatis가 사용할 sessionTemplate의 factory에 sessionFactory를 적용한다.
+	 * @param sqlSessionFactory
+	 * @return
+	 */</span>
+	<span class="nd">@Bean</span>
+	<span class="kd">public</span> <span class="nc">SqlSessionTemplate</span> <span class="nf">sqlSessionTemplate</span><span class="o">(</span><span class="nc">SqlSessionFactory</span> <span class="n">sqlSessionFactory</span><span class="o">)</span> <span class="o">{</span>
+		<span class="k">return</span> <span class="k">new</span> <span class="nf">SqlSessionTemplate</span><span class="o">(</span><span class="n">sqlSessionFactory</span><span class="o">);</span>
+	<span class="o">}</span>
+<span class="o">}</span>
+
+</code></pre></div></div> <p>이 클래스가 하는 일은 아래와 같습니다.</p> <ul> <li>hikari connection pool을 이용하여 DataSource 설정하기</li> <li>SqlSessionFacotry 빈 등록 (datasource와 매퍼xml 파일의 위치를 설정)</li> <li>SqlSessionTemplate 빈 등록</li> </ul> <p>이제 스프링부트가 실행될때 이 configuration 클래스를 스캔하고, 우리가 @Bean 어노테이션을 통해 선언해준 빈들이 spring bean container에 등록되어 사용됩니다.</p> <p><strong>3. sqlSessionTemplate 이 뭘까요?</strong><br> SqlSessionTemplate은 마이바티스 스프링 연동모듈의 핵심입니다. SqlSessionTemplate은 SqlSession을 구현하고 코드에서 SqlSession를 대체하는 역할을 한다. SqlSessionTemplate 은 쓰레드에 안전하고 여러개의 DAO나 매퍼에서 공유할수 있습니다.</p> <p>SQL을 처리하는 마이바티스 메서드를 호출할때 SqlSessionTemplate은 SqlSession이 현재의 스프링 트랜잭션에서 사용될수 있도록 보장합니다. 추가적으로 SqlSessionTemplate은 필요한 시점에 세션을 닫고, 커밋하거나 롤백하는 것을 포함한 세션의 생명주기를 관리합니다. 또한 마이바티스 예외를 스프링의 DataAccessException로 변환하는 작업또한 처리합니다.</p> <p>SqlSessionTemplate은 생성자 인자로 SqlSessionFactory를 사용해서 생성될 수 있습니다.</p> <h3 id="4-databasemappersxmldtomapper-interface-만들기">4. Database,Mappers.xml,DTO,Mapper interface 만들기</h3> <p>-<strong>1.Database table 만들기</strong><br> 테스트에 사용한 테이블의 형태는 다음과같습니다.</p> <p><img src="/img/2020_10_21_data.png" width="700" style="display:block;margin-left:auto;margin-right:auto;margin-top:20px"></p> <p><br></p> <p>-<strong>2. Mapper.xml 구현하기</strong><br> 앞전에 Configuration을 통해 resources/mappers/<em>*/</em>.xml 경로의 파일들을 mapper 파일로 볼 수 있게 설정해두었으니 동일한 위치에 디렉토리를 생성해주고 xml 파일을 만들어 작성해줍니다.</p> <p><img src="/img/2020_10_21_explorer.png" width="400" style="display:block;margin-left:auto;margin-right:auto;margin-top:20px"> <br></p> <p>저는 MemberMapper.xml 이라는 파일명으로 맵퍼 xml을 구성했습니다.</p> <ul> <li>MemberMapper.xml</li> </ul> <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<span class="cp">&lt;!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"&gt;</span>
+<span class="nt">&lt;mapper</span> <span class="na">namespace=</span><span class="s">"com.jaehyun.authapp.dao.MemberMapper"</span><span class="nt">&gt;</span>
+	<span class="c">&lt;!-- 아이디 기반 회원정보검색 --&gt;</span>
+	<span class="nt">&lt;select</span> <span class="na">id=</span><span class="s">"findByUserName"</span> <span class="na">parameterType=</span><span class="s">"String"</span>
+		<span class="na">resultType=</span><span class="s">"com.jaehyun.authapp.dto.Member"</span><span class="nt">&gt;</span>
+    	 <span class="cp">&lt;![CDATA[
+    	select * 
+    	from member
+    	where username=#{username}
+    ]]&gt;</span>
+	<span class="nt">&lt;/select&gt;</span>
+	<span class="nt">&lt;select</span> <span class="na">id=</span><span class="s">"getAuthorities"</span> <span class="na">parameterType=</span><span class="s">"String"</span>
+		<span class="na">resultType=</span><span class="s">"String"</span><span class="nt">&gt;</span>
+		<span class="cp">&lt;![CDATA[
+			SELECT memberAuthorities 
+			FROM authority WHERE 
+			username = #{username}
+		]]&gt;</span>
+	<span class="nt">&lt;/select&gt;</span>
+<span class="nt">&lt;/mapper&gt;</span>
+</code></pre></div></div> <p>-<strong>3. Member DTO 구현하기</strong> Mybatis를 이용해 결과를 받을 DTO를 생성합니다. lombok을 이용하였습니다. spring security를 이용하지 않았다면 용도에맞게 일반적인 DTO를 만들어 사용하시면 됩니다.</p> <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/**  
+* @packageName : com.jaehyun.authapp.dto
+* @fileName	   : Member.java
+* @author 	   : parkjaehyun
+* @date 	   : 2020.10.21
+* @description : Spring Security UserDetails interface를 구현한 회원 UserDetails 클래스
+* ============================================================================
+* DATE       	   AUTHOR  	       NOTE
+* ----------------------------------------------------------------------------
+* 2020.10.21       parkjaehyun     최초생성
+*/</span> 
+<span class="nd">@ToString</span>
+<span class="nd">@Setter</span>
+<span class="nd">@Getter</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Member</span> <span class="kd">implements</span> <span class="nc">UserDetails</span><span class="o">{</span>
+	<span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">long</span> <span class="n">serialVersionUID</span> <span class="o">=</span> <span class="mi">1L</span><span class="o">;</span>
+	<span class="kd">private</span> <span class="nc">String</span> <span class="n">username</span><span class="o">;</span>
+	<span class="kd">private</span> <span class="nc">String</span> <span class="n">password</span><span class="o">;</span>
+	<span class="kd">private</span> <span class="nc">String</span> <span class="n">nickname</span><span class="o">;</span>
+	<span class="kd">private</span> <span class="kt">boolean</span> <span class="n">isAccountNonExpired</span><span class="o">;</span>
+	<span class="kd">private</span> <span class="kt">boolean</span> <span class="n">isAccountNonLocked</span><span class="o">;</span>
+	<span class="kd">private</span> <span class="kt">boolean</span> <span class="n">isCredentialsNonExpried</span><span class="o">;</span>
+	<span class="kd">private</span> <span class="kt">boolean</span> <span class="n">isEnabled</span><span class="o">;</span>
+	<span class="kd">private</span> <span class="nc">Collection</span><span class="o">&lt;?</span> <span class="kd">extends</span> <span class="nc">GrantedAuthority</span><span class="o">&gt;</span> <span class="n">authorities</span><span class="o">;</span>
+	<span class="nd">@Override</span>
+	<span class="kd">public</span> <span class="nc">Collection</span><span class="o">&lt;?</span> <span class="kd">extends</span> <span class="nc">GrantedAuthority</span><span class="o">&gt;</span> <span class="nf">getAuthorities</span><span class="o">()</span> <span class="o">{</span>
+		<span class="k">return</span> <span class="n">authorities</span><span class="o">;</span>
+	<span class="o">}</span>
+	<span class="nd">@Override</span>
+	<span class="kd">public</span> <span class="nc">String</span> <span class="nf">getPassword</span><span class="o">()</span> <span class="o">{</span>
+		<span class="k">return</span> <span class="n">password</span><span class="o">;</span>
+	<span class="o">}</span>
+	<span class="nd">@Override</span>
+	<span class="kd">public</span> <span class="nc">String</span> <span class="nf">getUsername</span><span class="o">()</span> <span class="o">{</span>
+		<span class="k">return</span> <span class="n">username</span><span class="o">;</span>
+	<span class="o">}</span>
+	<span class="nd">@Override</span>
+	<span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isAccountNonExpired</span><span class="o">()</span> <span class="o">{</span>
+		<span class="k">return</span> <span class="n">isAccountNonExpired</span><span class="o">;</span>
+	<span class="o">}</span>
+	<span class="nd">@Override</span>
+	<span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isAccountNonLocked</span><span class="o">()</span> <span class="o">{</span>
+		<span class="k">return</span> <span class="n">isAccountNonLocked</span><span class="o">;</span>
+	<span class="o">}</span>
+	<span class="nd">@Override</span>
+	<span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isCredentialsNonExpired</span><span class="o">()</span> <span class="o">{</span>
+		<span class="k">return</span> <span class="n">isCredentialsNonExpried</span><span class="o">;</span>
+	<span class="o">}</span>
+	<span class="nd">@Override</span>
+	<span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isEnabled</span><span class="o">()</span> <span class="o">{</span>
+		<span class="k">return</span> <span class="n">isEnabled</span><span class="o">;</span>
+	<span class="o">}</span>
+<span class="o">}</span>
+
+</code></pre></div></div> <p>-<strong>4. Member Mapper interface 구현하기</strong> Mybatis는 @Mapper 어노테이션을통해 interface 형태로 맵퍼를 이용할 수 있으며, mybatis에서 이를 해석하고 자연스럽게 DTO에 매칭해주게 됩니다.</p> <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/**
+* @packageName : com.jaehyun.authapp.mappers
+* @fileName	   : MemberMapper.java
+* @author 	   : parkjaehyun
+* @date 	   : 2020.10.21
+* @description : Mybatis를 이용한 회원 Mapper 클래스
+* ============================================================================
+* DATE       	   AUTHOR  	       NOTE
+* ----------------------------------------------------------------------------
+* 2020.10.21       parkjaehyun     최초생성
+*/</span> 
+<span class="nd">@Mapper</span>
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">MemberMapper</span> <span class="o">{</span>
+	<span class="cm">/**
+	 * @methodName  : findByUserName
+	 * @author      : jaehyun Park
+	 * @date        : 2020.10.21
+	 * @description : 회원 조회(아이디기반)
+	 * @param username
+	 * @return
+	 */</span>
+	<span class="kd">public</span> <span class="nc">Member</span> <span class="nf">findByUserName</span><span class="o">(</span><span class="nc">String</span> <span class="n">username</span><span class="o">);</span>
+	<span class="cm">/**
+	 * @methodName  : joinMember
+	 * @author      : jaehyun Park
+	 * @date        : 2020.10.21
+	 * @description : 회원가입 
+	 * @param member
+	 * @return
+	 */</span>
+	<span class="kd">public</span> <span class="kt">int</span> <span class="nf">joinMember</span><span class="o">(</span><span class="nc">Member</span> <span class="n">member</span><span class="o">);</span>
+	
+    <span class="cm">/**
+     * @methodName  : readAuthority
+     * @author      : jaehyun Park
+     * @date        : 2020.10.21
+     * @description : 해당 유저의 권한을 모두 가져온다.
+     * @param username
+     * @return
+     */</span>
+    <span class="kd">public</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="nf">getAuthorities</span><span class="o">(</span><span class="nc">String</span> <span class="n">username</span><span class="o">);</span>
+
+<span class="o">}</span>
+</code></pre></div></div> <h4 id="mybatis의-mapper와-dao는-같은-행위를-하고있는데요">MyBatis의 Mapper와 DAO는 같은 행위를 하고있는데요?</h4> <p>제가 구글링하면서 불편함을 많이 느꼇던 부분이 바로 이부분입니다. 많은 예제들이 DAO와 Mapper interface를 별개로 분류하고 <strong>DAO에서 Mapper 인터페이스를 물고 이용하는 방식</strong>으로 구성되어 있었습니다.</p> <p>하지만 자세히 생각해보면 DAO 계층과 Mapper interface의 행위와 책임은 거의 같습니다. Mybatis가 SqlSession을 이용해 DataBase에 Access하는 행위를 하고있고, 기존에 생성되어있는 DAO에서 또한 그런 행위에 대한 책임만을 가지고있습니다. Mybatis는 DAO에서 하는 작업을 XML을 이용하여 한번더 나누었고, 인터페이스를 통해 전반적인 구현, 실행의 책임을 Mybatis core에 맡겼을 뿐입니다. 저는 그래서 DAO와 Mapper계층의 공존이 정상적이지 않다고 생각합니다.</p> <h3 id="5-junit을-이용해-정상적인-연동이-되었는지-확인하기">5. JUnit을 이용해 정상적인 연동이 되었는지 확인하기</h3> <p>우선 연동을 확인하기 위해 만들어볼 코드가 있습니다. 저는 Member라는 DTO 를 만들어 사용할 예정이며, Spring security를 함께 사용하고 있기 때문에 DTO 클래스가 복잡하네요 :( <img src="/img/2020_10_21_member.png" width="500" style="display:block;margin-left:auto;margin-right:auto;margin-top:20px"> <br></p> <p>-<strong>1. Mapper interface 이용해 정상적인 값을 가지고오는지 확인하기</strong></p> <p>JUnit5를 이용하여 테스트해봅니다.</p> <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@SpringBootTest</span>
+<span class="kd">class</span> <span class="nc">MemberMapperTest</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nc">Logger</span> <span class="n">logger</span> <span class="o">=</span> <span class="nc">LoggerFactory</span><span class="o">.</span><span class="na">getLogger</span><span class="o">(</span><span class="nc">Assert</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+	<span class="nd">@Autowired</span>
+	<span class="nc">MemberMapper</span> <span class="n">mapper</span><span class="o">;</span>
+	<span class="nd">@Test</span>
+	<span class="nd">@DisplayName</span><span class="o">(</span><span class="s">"맵퍼 회원이름 조회 테스트케이스"</span><span class="o">)</span>
+	<span class="kt">void</span> <span class="n">회원이름으로_조회_잘되는지</span><span class="o">()</span> <span class="o">{</span>
+		 <span class="n">mapper</span><span class="o">.</span><span class="na">findByUserName</span><span class="o">(</span><span class="s">"admin"</span><span class="o">);</span>
+		 <span class="nc">Member</span> <span class="n">member</span> <span class="o">=</span> <span class="n">mapper</span><span class="o">.</span><span class="na">findByUserName</span><span class="o">(</span><span class="s">"admin"</span><span class="o">);</span>
+		 <span class="n">logger</span><span class="o">.</span><span class="na">info</span><span class="o">(</span><span class="n">member</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
+		 <span class="n">assertTrue</span><span class="o">(</span><span class="s">"admin"</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">member</span><span class="o">.</span><span class="na">getUsername</span><span class="o">()));</span>
+		 <span class="n">assertTrue</span><span class="o">(</span><span class="s">"admin"</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">member</span><span class="o">.</span><span class="na">getNickname</span><span class="o">()));</span>
+		 <span class="n">assertTrue</span><span class="o">(</span><span class="s">"admin"</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">member</span><span class="o">.</span><span class="na">getPassword</span><span class="o">()));</span>
+         <span class="o">}</span>
+
+<span class="o">}</span>
+</code></pre></div></div> <p>-<strong>2. 결과</strong></p> <p><img src="/img/2020_10_21_junit.png" width="700" style="display:block;margin-left:auto;margin-right:auto;margin-top:20px"> <br></p> <p>테스트가 정상 통과되었고 원하는대로 잘 나와주었습니다.</p> <footer class="post-modified-date"> <p> Updated <time datetime=" 2020-12-28T23:47:43+08:00 "> Monday, Dec 28, 2020 </time> </p> </footer> </div> </article> </main> <footer class="footer"> <ul> <li><a href="/">Jaehyun Park Dev Blog</a></li> <li> <a href="https://sparanoid.com/lab/amsf/" title="Almace Scaffolding with theme Curtana">AMSF</a> </li> </ul> </footer> <script></script> <script></script> <script>"serviceWorker"in navigator&&"jaehyunup.github.io"===window.location.hostname&&navigator.serviceWorker.register("/service-worker.js").then(function(e){console.log("ServiceWorker registration successful with scope: ",e.scope)}).catch(function(e){console.log("ServiceWorker registration failed: ",e)})</script></body></html>
