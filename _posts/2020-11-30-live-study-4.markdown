@@ -1,0 +1,293 @@
+---
+title: "Controll flow statement in Java"
+date: 2020-11-30
+categories:
+  - Java
+tags:
+  - Java
+---
+
+![스터디사진](https://github.com/jaehyunup/java_study/raw/master/20.11-ing/img/studyhalle.jpg?raw=true)
+<br/>
+
+### 이번 포스팅에서는 자바의 선택문,반복문 등 제어문의 표현법에 대해 간단히 알아보려합니다. 그 과정속에서 자바 버전에서 추가,변경된 Expression을 정리했습니다.
+
+# 1. 조건문 (The if-then and if-then-else Statements)
+
+## 1. if-then
+
+가장 기본적인 조건문으로 if절에 작성된 코드의 결과가 True일때 then절의 코드가 실행됩니다.
+
+```java
+void ifTest(){
+  boolean flag=true;
+  if(flag){ // if statement
+    // then statement
+  }
+}
+```
+
+## 2. if-then-else
+
+if절이 true일때는 then 절이 실행되고, false일때는 else절이 실행됩니다
+
+```java
+void ifTest(){
+  boolean flag=true;
+  if(flag){ // if statement
+    // then statement
+  }else{
+    //else statement
+  }
+}
+```
+
+# 2. 제어문 (Swtich-case Statement)
+
+## 1. switch
+
+다양한 상황에따른 흐름이 필요할때 사용하게되는 switch 문입니다. switch문에 작성된 값을 비교하여 case와 같을때 case문이 작동됩니다.
+
+switch문의 조건절에 들어갈 수 있는 자료형은 다음과같습니다.
+
+| 비고           | 종류                                          |
+| -------------- | --------------------------------------------- |
+| 프리미티브타입 | boolean,byte,short,char,int,long,float,double |
+| 래퍼클래스     | String,Character,Byte,Short,Integer           |
+
+**p.s String 클래스는 java 8 버전부터 Switch문에 사용할 수 있게 되었습니다.**
+
+```java
+public class StringSwitchDemo {
+    public static int getMonthNumber(String month) {
+        int monthNumber = 0;
+        if (month == null) {
+            return monthNumber;
+        }
+        switch (month.toLowerCase()) {
+            case "january":
+                monthNumber = 1;
+                break;
+            case "february":
+                monthNumber = 2;
+                break;
+            case "march":
+                monthNumber = 3;
+                break;
+            case "april":
+                monthNumber = 4;
+                break;
+            case "may":
+                monthNumber = 5;
+                break;
+            case "june":
+                monthNumber = 6;
+                break;
+            case "july":
+                monthNumber = 7;
+                break;
+            case "august":
+                monthNumber = 8;
+                break;
+            case "september":
+                monthNumber = 9;
+                break;
+            case "october":
+                monthNumber = 10;
+                break;
+            case "november":
+                monthNumber = 11;
+                break;
+            case "december":
+                monthNumber = 12;
+                break;
+            default:
+                monthNumber = 0;
+                break;
+        }
+        return monthNumber;
+    }
+
+    public static void main(String[] args) {
+        String month = "August";
+        int returnedMonthNumber =
+            StringSwitchDemo.getMonthNumber(month);
+        if (returnedMonthNumber == 0) {
+            System.out.println("Invalid month");
+        } else {
+            System.out.println(returnedMonthNumber);
+        }
+    }
+}
+```
+
+swtich문은 자바 버전별로 여러가지 변경점이 많이 생겼는데요, 대표적으로 자바 12,13버전에서 yield 키워드나 arrow rule등의 변경점이 있었습니다.
+yield를 사용하면 기존 swtich에서 break를 이용했던것과 달리, break를 이용하지않고 switch문의 결과를 받을 variable을 이용하여 반복되는 break 키워드 작성을 줄일 수 있습니다. 또, arrow 표현을 통해 더 보기쉬운 코드작성또한 가능하게 되었습니다.
+
+```java
+ // Traditional switch
+    private static int getValueBefore12(String mode) {
+        int result;
+        switch (mode) {
+            case "a":
+            case "b":
+                result = 1;
+                break;
+            case "c":
+                result = 2;
+                break;
+            case "d":
+            case "e":
+            case "f":
+                result = 3;
+                break;
+            default:
+                result = -1;
+        }
+        ;
+        return result;
+    }
+
+    // Java 12, multiple comma-separated labels
+    private static int getValueMultipleLabels(String mode) {
+        int result;
+        switch (mode) {
+            case "a", "b":
+                result = 1;
+                break;
+            case "c":
+                result = 2;
+                break;
+            case "d", "e", "f":
+                result = 3;
+                break;
+            default:
+                result = -1;
+        }
+        ;
+        return result;
+    }
+
+    // Java 12, switch expression returns a value via label rules (arrow)
+    private static int getValueViaArrow(String mode) {
+        int result = switch (mode) {
+            case "a", "b" -> 1;
+            case "c" -> 2;
+            case "d", "e", "f" -> {
+                // do something here...
+                System.out.println("Supports multi line block!");
+                yield 3;
+            }
+            default -> -1;
+        };
+        return result;
+    }
+
+    // Java 13, switch expression returns a value via yield
+    private static int getValueViaYield(String mode) {
+        int result = switch (mode) {
+            case "a", "b":
+                yield 1;
+            case "c":
+                yield 2;
+            case "d", "e", "f":
+                // do something here...
+                System.out.println("Supports multi line block!");
+                yield 3;
+            default:
+                yield -1;
+        };
+        return result;
+    }
+```
+
+또한 Java 12 버전에서는 case expression 내부에 같은 변수명을 사용할 수 없었지만 이제는 가능하게되었습니다.
+
+```java
+int y = switch (x) {
+  case 1:
+    String temp = "first";
+    break temp.length();
+  case 2:
+    String temp = "second";
+    break temp.length();
+  default:
+    String temp = "none";
+    break temp.length();
+}
+
+// 12 버전 이전에서는 아래와 같이 사용해야 했습니다.
+
+int y = switch (x) {
+  case 1:
+    String firstTemp = "first";
+    break firstTemp.length();
+  case 2:
+    String secondTemp = "second";
+    break secondTemp.length();
+  default:
+    String defaultTemp = "none";
+    break defaultTemp.length();
+}
+```
+
+# 3. 반복문
+
+## 1. while & do-while
+
+while 절은 괄호안에있는 expression이 true가 될때 계속반복하고 false 일때 반복을 멈춥니다. **while문 실행 중간 괄호안 expression false가 되어도 중간에 멈추지않고** 반복 첫지점에서 계속 값 검증을 수행합니다.
+
+do-while절은 마찬가지 이지만 do절 아래에있는 코드를 수행하고 while절 expression 에 대해 검증합니다. 즉, 한번은 무조건 실행되고 마지막 지점에서 반복 여부를 확인합니다.
+
+```java
+// while
+while (true){
+    // your code goes here
+}
+
+// do-while
+do {
+     statement(s)
+} while (expression);
+```
+
+## 2. for(for-loop)
+
+for(for-loop)문입니다.  
+for 괄호 중간 expression 이 true일때 계속 반복합니다.
+
+```java
+class ForDemo {
+    public static void main (String [] args) {
+         for (int i = 1; i <11; i ++) {
+              System.out.println ( "Count is :"+ i);
+         }
+    }
+}
+```
+
+**for문으로의 무한루프는 다음과같이 만들 수 있습니다.**
+
+```java
+// 무한 루프
+for (;;) {
+    // 코드
+}
+```
+
+**컬렉션/배열을 통한 향상된 반복문(enhanced for)**
+
+자바 5에서 추가된 향상된 반복문입니다. for-each라고도 불립니다.
+
+```java
+// print array elements
+class EnhancedForDemo {
+    public static void main(String[] args){
+         int[] numbers =
+             {1,2,3,4,5,6,7,8,9,10};
+         for (int item : numbers) {
+             System.out.println("Count is: " + item);
+         }
+    }
+}
+```
