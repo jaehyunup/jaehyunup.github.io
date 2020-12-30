@@ -197,7 +197,7 @@ public class myChu {
  자세한 연결 구조는 링크필드에 의해 다음 노드와 연결되는 구조이며, 헤드가 가장 앞의 노드. 링크필드가 연속된 다음 노드들을 가르키는 형태로 아래와 같다.  
 
 #### 시각화  
- ![linked_list_image](../img/linked_list.png)
+ ![linked_list_image](../../img/linked_list.png)
 
 
 #### 연결리스트 만들어보기
@@ -273,7 +273,7 @@ public class simpleLinkedListTest {
 <br/>  
 
 ## 5. 트리
-![출처 https://wwst.tistory.com/2](../img/tree.gif) 
+![출처 https://wwst.tistory.com/2](../../img/tree.gif) 
 ###### 출처 https://wwst.tistory.com/2 님의 글에서 옮겨왔습니다.
 
 위와 같은 형태의 자료구조를 트리라고 합니다. 
@@ -283,7 +283,7 @@ public class simpleLinkedListTest {
 
 
 ### 이진트리의 종류
-![https://jiwondh.github.io/2017/10/15/tree/](../img/binary_tree.png) 
+![https://jiwondh.github.io/2017/10/15/tree/](../../img/binary_tree.png) 
 ###### 출처 : https://jiwondh.github.io/2017/10/15/tree/
 
 위와같은 형태로, 루트노드에 2개이하의 자식을 가지고있는 트리를 이진트리라고 합니다. 트리의 종류는 포화이진트리 등 다양한 형태가 있겠습니다.
@@ -312,7 +312,7 @@ dfs는 Stack이나 재귀함수로 구현이 가능합니다.
 
 ### 특별한 이진트리
 #### 수식 이진트리
-![](../img/op_tree.png)
+![](../../img/op_tree.png)
 
 수식을 표현하는 이진 트리  
 수식 이진 트리라고 부르기도 합니다.

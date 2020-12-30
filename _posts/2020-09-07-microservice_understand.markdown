@@ -68,7 +68,7 @@ Monolith, 단단하고 끈끈하게 묶여있는.
 규모가 작은 프로젝트에서 자주 사용되어집니다.
 
 
-![](../img/mono_arc.jpeg)  
+![](../../img/mono_arc.jpeg)  
 
 
 ##### [이미지 출처](https://medium.com/koderlabs/introduction-to-monolithic-architecture-and-microservices-architecture-b211a5955c63)

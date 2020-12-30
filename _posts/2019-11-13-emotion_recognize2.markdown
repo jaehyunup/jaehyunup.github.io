@@ -15,7 +15,7 @@ CNN을 이용하고 [fer2013](https://www.kaggle.com/c/challenges-in-representat
 
 모델의 구성은 다음과 같다
 
-![](../img/emotion_model.png)  
+![](../../img/emotion_model.png)  
 
 
 학습에 대한 과정은 [https://github.com/gitshanks/fer2013](https://github.com/gitshanks/fer2013) 이분의 github를 참고를 많이했고 내가 직접 학습시킬때 보다 훨씬 더 좋은 결과를 낼 수 있었다.
@@ -32,7 +32,7 @@ CNN을 이용하고 [fer2013](https://www.kaggle.com/c/challenges-in-representat
 현재 내가 개발하고있는 모듈의 상태는 5단계인 **반환값을 이용해 감정의 변화를 확인하고 피드백** 을 제공하는 수준을 바라보고있다. 
 
 
-![](../img/emotion_test.png)
+![](../../img/emotion_test.png)
 
 
 요청된 비디오에따라 감정 변화와 프레임별 감정을 기록하고 이 정보를 통해서 화자의 감정표현이 올바른지, 아닌지 판별하고 피드백을 줄수있게끔 준비해둔 상태이다.

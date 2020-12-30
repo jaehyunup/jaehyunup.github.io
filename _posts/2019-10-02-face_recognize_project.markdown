@@ -61,7 +61,7 @@ tags:
 <br>
 정규화 과정(얼굴포즈 추론과 아핀 변환) 은 다음과 비슷하게 이루어진다  
 
-![](../img/affine_transformation.png)  
+![](../../img/affine_transformation.png)  
 출처 - Openface
 
 <br>
@@ -81,7 +81,7 @@ tags:
 -----
 ### OpenFace 사용하기
 
-![](../img/openface_artifact.png)  
+![](../../img/openface_artifact.png)  
 
 
 출처- https://blog.algorithmia.com/understanding-facial-recognition-openface
