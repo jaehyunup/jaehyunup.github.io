@@ -19,7 +19,7 @@ description: >- # this means to ignore newlines until "baseurl:"
   안녕하세요, 개발자 박재현의 개발 블로그입니다.
 twitter_username: 
 github_username: jaehyunup
-minimal_mistakes_skin: neon
+minimal_mistakes_skin: "dark"
 search: true
 
 # Build settings
