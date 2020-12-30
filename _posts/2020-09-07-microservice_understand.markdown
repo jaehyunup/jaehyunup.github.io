@@ -67,8 +67,9 @@ Monolith, 단단하고 끈끈하게 묶여있는.
 풀어 말해 결합도가 높은 시스템 아키텍쳐를 말합니다.  
 규모가 작은 프로젝트에서 자주 사용되어집니다.
 
-<img src="https://github.com/jaehyunup/jaehyunup.github.io/blob/master/img/mono_arc.jpeg?raw=true" 
-width="80%" style="display:block;margin-left:auto;margin-right:auto;" />
+
+![](../img/mono_arc.jpeg)  
+
 
 ##### [이미지 출처](https://medium.com/koderlabs/introduction-to-monolithic-architecture-and-microservices-architecture-b211a5955c63)
 

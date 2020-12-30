@@ -59,10 +59,10 @@ tags:
 3. 딥러닝을 이용해서 얼굴을 128-Embedding Vector로 표현한다.
 
 <br>
-정규화 과정(얼굴포즈 추론과 아핀 변환) 은 다음과 비슷하게 이루어진다<br>
+정규화 과정(얼굴포즈 추론과 아핀 변환) 은 다음과 비슷하게 이루어진다  
 
-<img src="/img/affine_transformation.png" width="300" style="display:block;margin-left:auto; margin-right:auto;margin-top:20px;"/>출처 - Openface
-
+![](../img/affine_transformation.png)  
+출처 - Openface
 
 <br>
 
@@ -81,7 +81,8 @@ tags:
 -----
 ### OpenFace 사용하기
 
-<img src="/img/openface_artifact.png" width="600" style="display:block;margin-left:auto; margin-right:auto;margin-top:20px;">
+![](../img/openface_artifact.png)  
+
 
 출처- https://blog.algorithmia.com/understanding-facial-recognition-openface
 
@@ -100,9 +101,10 @@ Openface는 Torch 기반으로 학습시킨 기학습된 Neural NetWorkModel을 
 
 -----
 ### REST API 소개
-위에서 설명한 것을 토대로 REST API를 개발했는데 사용자가 이용하는 유스케이스로 간단하게 표현한 구조는 아래와 같다.
+위에서 설명한 것을 토대로 REST API를 개발했는데 사용자가 이용하는 유스케이스로 간단하게 표현한 구조는 아래와 같다.  
 
-<img src="/img/rest_artifact.png" width="800" style="display:block;margin-left:auto; margin-right:auto;margin-top:20px;">
+![](../img/rest_artifact.png)  
+
 
 ##### 작동순서
 1. 사용자는 REST API에 카메라 영상을 포함하여 얼굴인식요청을 한다
@@ -114,9 +116,11 @@ Openface는 Torch 기반으로 학습시킨 기학습된 Neural NetWorkModel을 
 
 
 ##### 구현결과
+![](../img/parkjaehyun.png)    
 
-<img src="/img/parkjaehyun.png" width="150" style="display:block;margin-left:auto; margin-right:auto;margin-top:20px;">
-<img src="/img/embedding.gif" width="400" style="display:block;margin-left:auto; margin-right:auto;margin-top:20px;">
+![](../img/embedding.gif)    
+
+
 
 RESTAPI 요청이나 그런 과정들은 생략하였다. 글이 너무 길어질까봐..
 

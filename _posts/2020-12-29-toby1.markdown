@@ -3,8 +3,9 @@ title: Deep Dive in Spring - 1
 subtitle: 스프링을 다시 학습하며
 date: 2020-12-29
 categories:
-  - Java
+  - Spring
 tags:
+  - Spring
   - Java
 ---
 

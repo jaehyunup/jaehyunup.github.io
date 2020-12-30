@@ -20,10 +20,9 @@ tags:
 
 ### KAKAO VISION API
 -----
-<img src="/img/face_demo2.jpg" width="350" style="display:block;margin-left:auto; margin-right:auto;margin-top:20px;">
 
-<br>
-<br>
+![](../img/face_demo2.jpg)
+
 
 카카오 VISION API는 REST API 으로 제공되어지고있다.
 원하는 파라미터로 해당 API에 요청을 날리면 답변을 해준다는것이다.
@@ -147,22 +146,8 @@ if __name__=="__main__":
 
 ### 구현결과
 -----
-![](/img/man.png)  
-
-<img src="/img/man.png" width="700" style="display:block;margin-left:auto; margin-right:auto;margin-top:20px;">
+![](../img/man.png)  
 
 <br> 강만식님의 얼굴을 인식하고 회전각중 YAW를 출력하는 것을 알 수 있다.
 
-하다보니 이미지 자체의 화질이 너무 낮아서 그런가 정확도가 다소 낮은것같았고 시간도 부족해서 여기서 그만두기로 했다. PS 공부로 너무 바빠서 신경을 더 써줄 여유가 없다..
-
 <br>
-<br>
-
-
------
-## 마치는 글
-<br>
-
-강만식님을 진심으로 응원합니다
-
-단지 연구목적의 글임을 분명히 밝힙니다.
