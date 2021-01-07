@@ -1,0 +1,11 @@
+---
+title: git 연습
+subtitle: git 기본
+date: 2020-01-07
+categories:
+  - Git
+tags:
+  - Devops
+---
+
+# 새로운 브랜치를 만들어 master 브랜치에 병합하기
