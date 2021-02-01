@@ -1,7 +1,7 @@
 ---
 title: 우리팀의 좌충우돌 애자일 팀 프로젝트 도전기
 subtitle: MSA,Spring,Web
-date: 2020-01-29
+date: 2021-01-29
 categories:
   - Development
 tags:
