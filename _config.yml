@@ -16,7 +16,7 @@
 title: Jaehyun's Dev BLOG
 email: pjh3909@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
-  스푼라디오에서 Grey라는 이름으로 백앤드 개발을 하고있는 박재현입니다.
+  Jaehyun's Dev note
 twitter_username:
 github_username: jaehyunup
 minimal_mistakes_skin: 'contrast'
@@ -58,7 +58,7 @@ plugins:
 author:
   name: 'Jaehyun Park'
   avatar: 'https://avatars3.githubusercontent.com/u/38849685?s=460&u=d33f9efe7e51bccd949be07dd8bff3afdca49be1&v=4'
-  bio: '안녕하세요. 세상에 산재하는 다양한 문제들을 제 기술력으로 해결할 수 있는 개발자가 되고싶은 개린이 박재현입니다.'
+  bio: '스푼라디오에서 Grey라는 이름으로 백앤드 개발을 하고있는 박재현입니다.'
   links:
     - label: 'Website'
       icon: 'fas fa-fw fa-link'
